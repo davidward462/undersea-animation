@@ -55,6 +55,9 @@ var spherePosition = [-4,0,0];
 var cubeRotation = [0,0,0];
 var cubePosition = [-1,0,0];
 
+var groundRotation = [0,0,0];
+var groundPosition = [0,0,0];
+
 var cylinderRotation = [0,0,0];
 var cylinderPosition = [1.1,0,0];
 
