@@ -56,7 +56,7 @@ var cubeRotation = [0,0,0];
 var cubePosition = [-1,0,0];
 
 var groundRotation = [0,0,0];
-var groundPosition = [0,0,0];
+var groundPosition = [0,-5,0];
 
 var cylinderRotation = [0,0,0];
 var cylinderPosition = [1.1,0,0];
@@ -66,6 +66,7 @@ var conePosition = [3,0,0];
 
 // colors
 var colorGrey = vec4(0.1, 0.1, 0.1, 1.0);
+var colorBlack = vec4(0.0, 0.0, 0.0, 1.0);
 
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
@@ -293,6 +294,18 @@ function render(timestamp) {
 		}
 		gPop();
 	gPop();
+
+    // Ground
+    gPush();
+        gTranslate(groundPosition[0], groundPosition[1], groundPosition[2]);
+        gPush();
+        {
+            setColor(colorBlack);
+            gScale(6,1,1);
+            drawCube();
+        }
+        gPop();
+    gPop();
     
 	// Cylinder example
 	gPush();
