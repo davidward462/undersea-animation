@@ -290,7 +290,7 @@ function render(timestamp) {
 			// This calls a simple helper function to apply the rotation (theta, x, y, z), 
 			// where x,y,z define the axis of rotation. Here is is the y axis, (0,1,0).
 			gRotate(cubeRotation[1],0,1,0);
-			drawCube();
+			//drawCube();
 		}
 		gPop();
 	gPop();
@@ -315,7 +315,7 @@ function render(timestamp) {
 			setColor(vec4(0.0,0.0,1.0,1.0));
 			cylinderRotation[1] = cylinderRotation[1] + 60*dt;
 			gRotate(cylinderRotation[1],0,1,0);
-			drawCylinder();
+			//drawCylinder();
 		}
 		gPop();
 	gPop();	
@@ -328,7 +328,7 @@ function render(timestamp) {
 			setColor(vec4(1.0,1.0,0.0,1.0));
 			coneRotation[1] = coneRotation[1] + 90*dt;
 			gRotate(coneRotation[1],0,1,0);
-			drawCone();
+			//drawCone();
 		}
 		gPop();
 	gPop();
