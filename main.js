@@ -64,6 +64,9 @@ var cylinderPosition = [1.1,0,0];
 var coneRotation = [0,0,0];
 var conePosition = [3,0,0];
 
+// colors
+var colorGrey = vec4(0.1, 0.1, 0.1, 1.0);
+
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
 {
@@ -268,7 +271,7 @@ function render(timestamp) {
 		gPush();
 		{
 			// Draw the sphere!
-			setColor(vec4(1.0,0.0,0.0,1.0));
+			setColor(colorGrey);
 			drawSphere();
 		}
 		gPop();
