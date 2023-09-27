@@ -54,8 +54,11 @@ var controller;
 var sphereRotation = [0,0,0];
 var spherePosition = [-4,0,0];
 
-var rockRotations = [[0,0,0], [0,0,0]];
-var rockPositions = [[0,0,0], [-3,0,0]];
+var rock1Rotation = [0,0,0];
+var rock1Position = [0,0,0];
+
+var rock2Rotation = [0,0,0];
+var rock2Position = [-2,0,0];
 
 var cubeRotation = [0,0,0];
 var cubePosition = [-1,0,0];
@@ -294,10 +297,11 @@ function render(timestamp) {
 
     // Rock 1
     gPush();
-        gTranslate(rockPositions[0][0], rockPositions[0][1], rockPositions[0][2]);
+        gTranslate(rock1Position[0], rock1Position[1], rock1Position[2]);
         gPush();
         {
             setColor(colorLightgrey);
+            gScale(0.5, 0.5, 0.5);
             drawSphere();
         }
         gPop();
@@ -305,11 +309,11 @@ function render(timestamp) {
     
     // Rock 2
     gPush();
-        gTranslate(rockPositions[1][0], rockPositions[1][1], rockPositions[1][2]);
+        gTranslate(rock2Position[0], rock2Position[1], rock2Position[2]);
         gPush();
         {
             setColor(colorLightgrey);
-            drawSphere();
+            //drawSphere();
         }
         gPop();
     gPop();
