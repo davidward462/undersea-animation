@@ -77,7 +77,7 @@ var cylinderRotation = [0,0,0];
 
 // Fish body
 var fishBodyPosition = [-2,0,0];
-var fishBodyRotation = [0,0,0];
+var fishBodyRotation = [0,90,0];
 var fishBodyScale = [0.5, 0.5, 2];
 
 // Fish head
@@ -396,8 +396,6 @@ function render(timestamp) {
                 gPush();
                 {
                     setColor(colorWhite);
-                    fishHeadRotation[1] = fishBodyRotation[1]
-                    gRotate(fishHeadRotation[1],0,1,0);
                     gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
                     drawCone();
                 }
