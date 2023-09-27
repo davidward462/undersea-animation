@@ -59,27 +59,30 @@ var sphereRotation = [0,0,0];
 var spherePosition = [-4,0,0];
 
 // rocks
-var rock1Rotation = [0,0,0];
 var rock1Position = [0,-3.5,0];
+var rock1Rotation = [0,0,0];
 
-var rock2Rotation = [0,0,0];
 var rock2Position = [-1,-3.7,0];
+var rock2Rotation = [0,0,0];
 
-var cubeRotation = [0,0,0];
 var cubePosition = [-1,0,0];
+var cubeRotation = [0,0,0];
 
-var groundRotation = [0,0,0];
 var groundPosition = [0,-5,0];
+var groundRotation = [0,0,0];
+var groundScale = [6,1,1];
 
-var cylinderRotation = [0,0,0];
 var cylinderPosition = [1.1,0,0];
+var cylinderRotation = [0,0,0];
 
-// fish
-var fishBodyRotation = [0,0,0];
+// Fish body
 var fishBodyPosition = [0,0,0];
+var fishBodyRotation = [0,0,0];
+var fishBodyScale = [0.5, 0.5, 2];
 
-var fishHeadRotation = [0,0,0];
+// Fish head
 var fishHeadPosition = [0,0,0];
+var fishHeadRotation = [0,0,0];
 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -355,7 +358,7 @@ function render(timestamp) {
         gPush();
         {
             setColor(colorLightgrey);
-            gScale(6,1,1);
+            gScale(groundScale[0], groundScale[1], groundScale[2]);
             drawCube();
         }
         gPop();
@@ -382,11 +385,23 @@ function render(timestamp) {
 			setColor(colorRed);
 			fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
 			gRotate(fishBodyRotation[1],0,1,0);
-            gScale(0.5, 0.5, 2);
+            gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
 			drawCone();
+
+
 		}
 		gPop();
 	gPop();
+
+    gPush();
+        gTranslate(fishHeadPosition[0], fishHeadPosition[1], fishHeadPosition[2]);
+        gPush();
+        {
+            setColor(colorWhite);
+            drawCone();
+        }
+        gPop();
+    gPop();
     
     if( animFlag )
         window.requestAnimFrame(render);
