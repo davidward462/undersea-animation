@@ -82,9 +82,13 @@ var fishHeadRotation = [0,0,0];
 var fishHeadPosition = [3,0,0];
 
 // colors
+var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
+var colorBlack = vec4(0.0, 0.0, 0.0, 1.0);
 var colorDarkgrey = vec4(0.1, 0.1, 0.1, 1.0);
 var colorLightgrey = vec4(0.5, 0.5, 0.5, 1.0);
-var colorBlack = vec4(0.0, 0.0, 0.0, 1.0);
+var colorRed = vec4(1.0, 0.0, 0.0, 1.0);
+var colorGreen = vec4(0.0, 1.0, 0.0, 1.0);
+var colorBlue = vec4(0.0, 0.0, 1.0, 1.0);
 
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
@@ -375,7 +379,7 @@ function render(timestamp) {
 		gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
 		gPush();
 		{
-			setColor(vec4(1.0,1.0,0.0,1.0));
+			setColor(colorRed);
 			fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
 			gRotate(fishBodyRotation[1],0,1,0);
 			drawCone();
