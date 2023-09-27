@@ -83,6 +83,7 @@ var fishBodyScale = [0.5, 0.5, 2];
 // Fish head
 var fishHeadPosition = [0,0,0];
 var fishHeadRotation = [0,0,0];
+var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -383,8 +384,8 @@ function render(timestamp) {
 		gPush();
 		{
 			setColor(colorRed);
-			fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
-			gRotate(fishBodyRotation[1],0,1,0);
+            fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
+            gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
 			drawCone();
             
@@ -395,6 +396,9 @@ function render(timestamp) {
                 gPush();
                 {
                     setColor(colorWhite);
+                    fishHeadRotation[1] = fishBodyRotation[1]
+                    gRotate(fishHeadRotation[1],0,1,0);
+                    gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
                     drawCone();
                 }
                 gPop();
