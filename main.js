@@ -58,6 +58,7 @@ var noRotation = [0,0,0];
 var sphereRotation = [0,0,0];
 var spherePosition = [-4,0,0];
 
+// rocks
 var rock1Rotation = [0,0,0];
 var rock1Position = [0,-3.5,0];
 
@@ -73,8 +74,12 @@ var groundPosition = [0,-5,0];
 var cylinderRotation = [0,0,0];
 var cylinderPosition = [1.1,0,0];
 
-var coneRotation = [0,0,0];
-var conePosition = [3,0,0];
+// fish
+var fishBodyRotation = [0,0,0];
+var fishBodyPosition = [0,0,0];
+
+var fishHeadRotation = [0,0,0];
+var fishHeadPosition = [3,0,0];
 
 // colors
 var colorDarkgrey = vec4(0.1, 0.1, 0.1, 1.0);
@@ -364,16 +369,16 @@ function render(timestamp) {
 		}
 		gPop();
 	gPop();	
-    
-	// Cone example
+
+    // Fish
 	gPush();
-		gTranslate(conePosition[0],conePosition[1],conePosition[2]);
+		gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
 		gPush();
 		{
 			setColor(vec4(1.0,1.0,0.0,1.0));
-			coneRotation[1] = coneRotation[1] + 90*dt;
-			gRotate(coneRotation[1],0,1,0);
-			//drawCone();
+			fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
+			gRotate(fishBodyRotation[1],0,1,0);
+			drawCone();
 		}
 		gPop();
 	gPop();
