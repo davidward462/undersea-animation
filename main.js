@@ -51,14 +51,18 @@ var controller;
 // Then the animation is simply evolving those DOF over time.
 
 // Object states
+
+var centerPosition = [0,0,0];
+var noRotation = [0,0,0];
+
 var sphereRotation = [0,0,0];
 var spherePosition = [-4,0,0];
 
 var rock1Rotation = [0,0,0];
-var rock1Position = [0,0,0];
+var rock1Position = [0,-3.5,0];
 
 var rock2Rotation = [0,0,0];
-var rock2Position = [-2,0,0];
+var rock2Position = [-1,-3.7,0];
 
 var cubeRotation = [0,0,0];
 var cubePosition = [-1,0,0];
@@ -313,7 +317,8 @@ function render(timestamp) {
         gPush();
         {
             setColor(colorLightgrey);
-            //drawSphere();
+            gScale(0.3, 0.3, 0.3);
+            drawSphere();
         }
         gPop();
     gPop();
