@@ -62,6 +62,7 @@ var rock1Rotation = [0,0,0];
 var rock2Position = [-1,-3.7,0];
 var rock2Rotation = [0,0,0];
 
+// Ground
 var groundPosition = [0,-5,0];
 var groundRotation = [0,0,0];
 var groundScale = [6,1,1];
@@ -75,6 +76,12 @@ var fishBodyScale = [0.5, 0.5, 2];
 var fishHeadPosition = [0,0,0];
 var fishHeadRotation = [0,0,0];
 var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
+
+// Diver
+var diverBodyPosition = [0,0,0];
+var diverBodyRotation = [0,0,0];
+var diverBodyScale = [0,0,0];
+
 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
