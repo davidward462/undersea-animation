@@ -49,11 +49,13 @@ var controller;
 // These are used to store the current state of objects.
 // In animation it is often useful to think of an object as having some DOF
 // Then the animation is simply evolving those DOF over time.
+
+// Object states
 var sphereRotation = [0,0,0];
 var spherePosition = [-4,0,0];
 
-var rockRotation = [0,0,0];
-var rockPosition = [0,0,0];
+var rockRotations = [[0,0,0], [0,0,0]];
+var rockPositions = [[0,0,0], [-3,0,0]];
 
 var cubeRotation = [0,0,0];
 var cubePosition = [-1,0,0];
@@ -290,9 +292,9 @@ function render(timestamp) {
 		gPop();
 	gPop();
 
-    // Rock
+    // Rock 1
     gPush();
-        gTranslate(rockPosition[0], rockPosition[1], rockPosition[2]);
+        gTranslate(rockPositions[0][0], rockPositions[0][1], rockPositions[0][2]);
         gPush();
         {
             setColor(colorLightgrey);
@@ -300,6 +302,18 @@ function render(timestamp) {
         }
         gPop();
     gPop();
+    
+    // Rock 2
+    gPush();
+        gTranslate(rockPositions[1][0], rockPositions[1][1], rockPositions[1][2]);
+        gPush();
+        {
+            setColor(colorLightgrey);
+            drawSphere();
+        }
+        gPop();
+    gPop();
+
 	// Cube example
 	gPush();
 		gTranslate(cubePosition[0],cubePosition[1],cubePosition[2]);
@@ -312,7 +326,7 @@ function render(timestamp) {
 			// This calls a simple helper function to apply the rotation (theta, x, y, z), 
 			// where x,y,z define the axis of rotation. Here is is the y axis, (0,1,0).
 			gRotate(cubeRotation[1],0,1,0);
-			drawCube();
+			//drawCube();
 		}
 		gPop();
 	gPop();
