@@ -52,6 +52,9 @@ var controller;
 var sphereRotation = [0,0,0];
 var spherePosition = [-4,0,0];
 
+var rockRotation = [0,0,0];
+var rockPosition = [0,0,0];
+
 var cubeRotation = [0,0,0];
 var cubePosition = [-1,0,0];
 
@@ -65,7 +68,8 @@ var coneRotation = [0,0,0];
 var conePosition = [3,0,0];
 
 // colors
-var colorGrey = vec4(0.1, 0.1, 0.1, 1.0);
+var colorDarkgrey = vec4(0.1, 0.1, 0.1, 1.0);
+var colorLightgrey = vec4(0.5, 0.5, 0.5, 1.0);
 var colorBlack = vec4(0.0, 0.0, 0.0, 1.0);
 
 // Setting the colour which is needed during illumination of a surface
@@ -143,6 +147,14 @@ window.onload = function init() {
             window.requestAnimFrame(render);
         }
         //console.log(animFlag);
+
+        // Buttons
+        document.getElementById( "xButton" ).onclick = function () {
+            // do nothing
+            eye[0] += 1;
+            eye[1] += 1;
+            eye[2] += 1;
+        };
 		
 		controller = new CameraController(canvas);
 		controller.onchange = function(xRot,yRot) {
@@ -272,12 +284,22 @@ function render(timestamp) {
 		gPush();
 		{
 			// Draw the sphere!
-			setColor(colorGrey);
-			drawSphere();
+			setColor(vec4(1.0,1.0,0.0,1.0));
+			//drawSphere();
 		}
 		gPop();
 	gPop();
-    
+
+    // Rock
+    gPush();
+        gTranslate(rockPosition[0], rockPosition[1], rockPosition[2]);
+        gPush();
+        {
+            setColor(colorLightgrey);
+            drawSphere();
+        }
+        gPop();
+    gPop();
 	// Cube example
 	gPush();
 		gTranslate(cubePosition[0],cubePosition[1],cubePosition[2]);
@@ -290,7 +312,7 @@ function render(timestamp) {
 			// This calls a simple helper function to apply the rotation (theta, x, y, z), 
 			// where x,y,z define the axis of rotation. Here is is the y axis, (0,1,0).
 			gRotate(cubeRotation[1],0,1,0);
-			//drawCube();
+			drawCube();
 		}
 		gPop();
 	gPop();
@@ -300,7 +322,7 @@ function render(timestamp) {
         gTranslate(groundPosition[0], groundPosition[1], groundPosition[2]);
         gPush();
         {
-            setColor(colorBlack);
+            setColor(colorLightgrey);
             gScale(6,1,1);
             drawCube();
         }
