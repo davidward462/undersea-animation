@@ -76,7 +76,7 @@ var cylinderPosition = [1.1,0,0];
 var cylinderRotation = [0,0,0];
 
 // Fish body
-var fishBodyPosition = [0,0,0];
+var fishBodyPosition = [-2,0,0];
 var fishBodyRotation = [0,0,0];
 var fishBodyScale = [0.5, 0.5, 2];
 
