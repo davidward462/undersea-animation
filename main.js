@@ -55,9 +55,6 @@ var controller;
 var centerPosition = [0,0,0];
 var noRotation = [0,0,0];
 
-var sphereRotation = [0,0,0];
-var spherePosition = [-4,0,0];
-
 // rocks
 var rock1Position = [0,-3.5,0];
 var rock1Rotation = [0,0,0];
@@ -65,15 +62,9 @@ var rock1Rotation = [0,0,0];
 var rock2Position = [-1,-3.7,0];
 var rock2Rotation = [0,0,0];
 
-var cubePosition = [-1,0,0];
-var cubeRotation = [0,0,0];
-
 var groundPosition = [0,-5,0];
 var groundRotation = [0,0,0];
 var groundScale = [6,1,1];
-
-var cylinderPosition = [1.1,0,0];
-var cylinderRotation = [0,0,0];
 
 // Fish body
 var fishBodyPosition = [-2,0,0];
@@ -299,18 +290,6 @@ function render(timestamp) {
 		prevTime = timestamp;
 	}
 	
-	// Sphere example
-	gPush();
-		// Put the sphere where it should be!
-		gTranslate(spherePosition[0],spherePosition[1],spherePosition[2]);
-		gPush();
-		{
-			// Draw the sphere!
-			setColor(vec4(1.0,1.0,0.0,1.0));
-			//drawSphere();
-		}
-		gPop();
-	gPop();
 
     // Rock 1
     gPush();
@@ -336,22 +315,6 @@ function render(timestamp) {
         gPop();
     gPop();
 
-	// Cube example
-	gPush();
-		gTranslate(cubePosition[0],cubePosition[1],cubePosition[2]);
-		gPush();
-		{
-			setColor(vec4(0.0,1.0,0.0,1.0));
-			// Here is an example of integration to rotate the cube around the y axis at 30 degrees per second
-			// new cube rotation around y = current cube rotation around y + 30deg/s*dt
-			cubeRotation[1] = cubeRotation[1] + 30*dt;
-			// This calls a simple helper function to apply the rotation (theta, x, y, z), 
-			// where x,y,z define the axis of rotation. Here is is the y axis, (0,1,0).
-			gRotate(cubeRotation[1],0,1,0);
-			//drawCube();
-		}
-		gPop();
-	gPop();
 
     // Ground
     gPush();
@@ -365,19 +328,6 @@ function render(timestamp) {
         gPop();
     gPop();
     
-	// Cylinder example
-	gPush();
-		gTranslate(cylinderPosition[0],cylinderPosition[1],cylinderPosition[2]);
-		gPush();
-		{
-			setColor(vec4(0.0,0.0,1.0,1.0));
-			cylinderRotation[1] = cylinderRotation[1] + 60*dt;
-			gRotate(cylinderRotation[1],0,1,0);
-			//drawCylinder();
-		}
-		gPop();
-	gPop();	
-
     // Fish body
 	gPush();
 		gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
