@@ -377,7 +377,7 @@ function render(timestamp) {
 		gPop();
 	gPop();	
 
-    // Fish
+    // Fish body
 	gPush();
 		gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
 		gPush();
@@ -387,21 +387,19 @@ function render(timestamp) {
 			gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
 			drawCone();
-
-
+            
 		}
 		gPop();
+            // Fish head
+                gTranslate(fishHeadPosition[0], fishHeadPosition[1], fishHeadPosition[2]);
+                gPush();
+                {
+                    setColor(colorWhite);
+                    drawCone();
+                }
+                gPop();
 	gPop();
 
-    gPush();
-        gTranslate(fishHeadPosition[0], fishHeadPosition[1], fishHeadPosition[2]);
-        gPush();
-        {
-            setColor(colorWhite);
-            drawCone();
-        }
-        gPop();
-    gPop();
     
     if( animFlag )
         window.requestAnimFrame(render);
