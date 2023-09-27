@@ -79,7 +79,7 @@ var fishBodyRotation = [0,0,0];
 var fishBodyPosition = [0,0,0];
 
 var fishHeadRotation = [0,0,0];
-var fishHeadPosition = [3,0,0];
+var fishHeadPosition = [0,0,0];
 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -382,6 +382,7 @@ function render(timestamp) {
 			setColor(colorRed);
 			fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
 			gRotate(fishBodyRotation[1],0,1,0);
+            gScale(0.5, 0.5, 2);
 			drawCone();
 		}
 		gPop();
