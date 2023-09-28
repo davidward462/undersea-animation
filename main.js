@@ -80,11 +80,11 @@ var fishHeadRotation = [0,0,0];
 var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
 
 // Diver
-var diverBodyPosition = [0,0,0];
+var diverBodyPosition = [3,1,0];
 var diverBodyRotation = [0,0,0];
-var diverBodyScale = [1,1,1];
+var diverBodyScale = [1,1.2,1];
 
-var diverHeadPosition = [0,1.5,0];
+var diverHeadPosition = [0,1.6,0];
 var diverHeadRotation = [0,0,0];
 var diverHeadScale = [0.5, 0.5, 0.5];
 
@@ -357,25 +357,20 @@ function render(timestamp) {
     gPush();
         gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
         gPush();
-        // working in diver body coordinates
         {
             setColor(colorBlue);
             gScale(diverBodyScale[0], diverBodyScale[1], diverBodyScale[2]);
             drawCube();
         }
-
+        gPop();
             gTranslate(diverHeadPosition[0], diverHeadPosition[1], diverHeadPosition[2]);
             gPush();
-            // working in diver head coordinates
             {
                 setColor(colorBlue);
                 gScale(diverHeadScale[0], diverHeadScale[1], diverHeadScale[2]);
                 drawSphere();
             }
-            gPop();
-            // leave diver head coordinates
         gPop();
-        // leave diver body coordinates
     gPop();
 
 
