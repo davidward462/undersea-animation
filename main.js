@@ -82,7 +82,7 @@ var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
 // Diver
 var diverBodyPosition = [0,0,0];
 var diverBodyRotation = [0,0,0];
-var diverBodyScale = [1,1.2,1];
+var diverBodyScale = [1,1,1];
 
 var diverHeadPosition = [0,1.5,0];
 var diverHeadRotation = [0,0,0];
