@@ -80,8 +80,11 @@ var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
 // Diver
 var diverBodyPosition = [0,0,0];
 var diverBodyRotation = [0,0,0];
-var diverBodyScale = [0,0,0];
+var diverBodyScale = [1,1.2,1];
 
+var diverHeadPosition = [0,1.5,0];
+var diverHeadRotation = [0,0,0];
+var diverHeadScale = [0.5, 0.5, 0.5];
 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -338,26 +341,42 @@ function render(timestamp) {
     // Fish body
 	gPush();
 		gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
-		gPush();
+        gPush();
 		{
 			setColor(colorRed);
             fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
             gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-			drawCone();
-            
+			//drawCone();
 		}
-		gPop();
-            // Fish head
-                gTranslate(fishHeadPosition[0], fishHeadPosition[1], fishHeadPosition[2]);
-                gPush();
-                {
-                    setColor(colorWhite);
-                    gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
-                    drawCone();
-                }
-                gPop();
+        gPop();
 	gPop();
+
+    // Diver body
+    gPush();
+        gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
+        gPush();
+        // working in diver body coordinates
+        {
+            setColor(colorBlue);
+            gScale(diverBodyScale[0], diverBodyScale[1], diverBodyScale[2]);
+            drawCube();
+        }
+
+            gTranslate(diverHeadPosition[0], diverHeadPosition[1], diverHeadPosition[2]);
+            gPush();
+            // working in diver head coordinates
+            {
+                setColor(colorBlue);
+                gScale(diverHeadScale[0], diverHeadScale[1], diverHeadScale[2]);
+                drawSphere();
+            }
+            gPop();
+            // leave diver head coordinates
+        gPop();
+        // leave diver body coordinates
+    gPop();
+
 
     
     if( animFlag )
