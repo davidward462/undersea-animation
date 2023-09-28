@@ -58,9 +58,11 @@ var noRotation = [0,0,0];
 // rocks
 var rock1Position = [0,-3.5,0];
 var rock1Rotation = [0,0,0];
+var rock1Scale = [0.5, 0.5, 0.5];
 
 var rock2Position = [-1,-3.7,0];
 var rock2Rotation = [0,0,0];
+var rock2Scale = [0.3, 0.3, 0.3];
 
 // Ground
 var groundPosition = [0,-5,0];
@@ -300,14 +302,13 @@ function render(timestamp) {
 		prevTime = timestamp;
 	}
 	
-
     // Rock 1
     gPush();
         gTranslate(rock1Position[0], rock1Position[1], rock1Position[2]);
         gPush();
         {
             setColor(colorLightgrey);
-            gScale(0.5, 0.5, 0.5);
+            gScale(rock1Scale);
             drawSphere();
         }
         gPop();
@@ -319,7 +320,7 @@ function render(timestamp) {
         gPush();
         {
             setColor(colorLightgrey);
-            gScale(0.3, 0.3, 0.3);
+            gScale(rock2Scale);
             drawSphere();
         }
         gPop();
