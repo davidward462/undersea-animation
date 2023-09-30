@@ -186,14 +186,6 @@ window.onload = function init() {
         }
         //console.log(animFlag);
 
-        // Buttons
-        document.getElementById( "xButton" ).onclick = function () {
-            // do nothing
-            eye[0] += 1;
-            eye[1] += 1;
-            eye[2] += 1;
-        };
-		
 		controller = new CameraController(canvas);
 		controller.onchange = function(xRot,yRot) {
 			RX = xRot;
