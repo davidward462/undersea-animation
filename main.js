@@ -353,7 +353,7 @@ function render(timestamp) {
             fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
             gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-			//drawCone();
+			drawCone();
 		}
         gPop();
 	gPop();
@@ -361,6 +361,8 @@ function render(timestamp) {
     // Diver body
     gPush();
         gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
+            diverBodyRotation[1] = diverBodyRotation[1] + 50*dt;
+            gRotate(diverBodyRotation[1], 0, 1, 0);
         gPush();
         {
             setColor(colorBlue);
