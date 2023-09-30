@@ -321,7 +321,7 @@ function render(timestamp) {
         {
             setColor(colorLightgrey);
             gScale(rock1Scale);
-            drawSphere();
+            //drawSphere();
         }
         gPop();
     gPop();
@@ -333,7 +333,7 @@ function render(timestamp) {
         {
             setColor(colorLightgrey);
             gScale(rock2Scale);
-            drawSphere();
+            //drawSphere();
         }
         gPop();
     gPop();
