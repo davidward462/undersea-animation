@@ -80,13 +80,25 @@ var fishHeadRotation = [0,0,0];
 var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
 
 // Diver
-var diverBodyPosition = [2,2,0];
+var diverBodyPosition = [0,1,0];
 var diverBodyRotation = [0,0,0];
 var diverBodyScale = [0.8,1.2,1];
 
-var diverHeadPosition = [0,1.7,0];
+// Head
+var diverHeadPosition = [0,1.6,0];
 var diverHeadRotation = [0,0,0];
-var diverHeadScale = [0.5, 0.5, 0.5];
+var diverHeadScaleValue = 0.4
+var diverHeadScale = [diverHeadScaleValue, diverHeadScaleValue, diverHeadScaleValue];
+
+// Legs
+var diverLegScale = [0.2, 0.7, 1];
+var diverLeftLegPosition = [-1,-4,0];
+var diverLeftLegRotation = [0,0,0];
+var diverLeftLegScale = diverLegScale;
+
+var diverRightLegPosition = [0,0,0];
+var diverRightLegRotation = [0,0,0];
+var diverRightLegScale = diverLegScale;
 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -348,7 +360,7 @@ function render(timestamp) {
             fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
             gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-			drawCone();
+			//drawCone();
 		}
         gPop();
 	gPop();
@@ -363,6 +375,8 @@ function render(timestamp) {
             drawCube();
         }
         gPop();
+
+            // Diver head
             gTranslate(diverHeadPosition[0], diverHeadPosition[1], diverHeadPosition[2]);
             gPush();
             {
@@ -370,7 +384,18 @@ function render(timestamp) {
                 gScale(diverHeadScale[0], diverHeadScale[1], diverHeadScale[2]);
                 drawSphere();
             }
-        gPop();
+            gPop();
+
+            // Diver left leg
+            gTranslate(diverLeftLegPosition[0], diverLeftLegPosition[1], diverLeftLegPosition[2]);
+            gPush();
+            {
+                setColor(colorBlue);
+                gScale(diverLeftLegScale[0], diverLeftLegScale[1], diverLeftLegScale[2]);
+                drawCube();
+            }
+            gPop();
+
     gPop();
 
 
