@@ -80,9 +80,10 @@ var fishHeadRotation = [0,0,0];
 var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
 
 // Diver
+var diverZScale = 0.2
 var diverBodyPosition = [0,0,0];
 var diverBodyRotation = [0,0,0];
-var diverBodyScale = [0.8,1.2,1];
+var diverBodyScale = [0.8,1.2,diverZScale];
 
 // Head
 var diverHeadPosition = [0,1.6,0];
@@ -91,7 +92,7 @@ var diverHeadScaleValue = 0.4
 var diverHeadScale = [diverHeadScaleValue, diverHeadScaleValue, diverHeadScaleValue];
 
 // Legs
-var diverLegScale = [0.2, 0.6, 1];
+var diverLegScale = [0.2, 0.6, diverZScale];
 var diverLegYPos = -3.4
 var diverLeftLegPosition = [-0.4,diverLegYPos,0];
 var diverLeftLegRotation = [0,0,0];
@@ -100,6 +101,17 @@ var diverLeftLegScale = diverLegScale;
 var diverRightLegPosition = [0.4,diverLegYPos,0];
 var diverRightLegRotation = [0,0,0];
 var diverRightLegScale = diverLegScale;
+
+// Shin
+var diverShinScale = [0.2, 0.6, diverZScale];
+var diverShinYPos = -3.4
+var diverLeftShinPosition = [0,diverShinYPos,0];
+var diverLeftShinRotation = [0,0,0];
+var diverLeftShinScale = diverShinScale;
+
+var diverRightShinPosition = [0,diverShinYPos,0];
+var diverRightShinRotation = [0,0,0];
+var diverRightShinScale = diverShinScale;
 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
