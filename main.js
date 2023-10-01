@@ -83,17 +83,18 @@ var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
 var diverZScale = 0.2
 var diverBodyPosition = [0,0,0];
 var diverBodyRotation = [0,0,0];
-var diverBodyScale = [0.8,1.2,diverZScale];
+var diverBodyScale = [0.6,1,diverZScale];
 
 // Head
-var diverHeadPosition = [0,1.6,0];
+var diverHeadPosition = [0,1.4,0];
 var diverHeadRotation = [0,0,0];
 var diverHeadScaleValue = 0.4
 var diverHeadScale = [diverHeadScaleValue, diverHeadScaleValue, diverHeadScaleValue];
 
 // Legs
-var diverLegScale = [0.2, 0.6, diverZScale];
-var diverLegYPos = -3.4
+var diverLegScale = [0.15, 0.5, diverZScale];
+var diverLegYPos = -2.8
+
 var diverLeftLegPosition = [-0.4,diverLegYPos,0];
 var diverLeftLegRotation = [0,0,0];
 var diverLeftLegScale = diverLegScale;
@@ -103,8 +104,9 @@ var diverRightLegRotation = [0,0,0];
 var diverRightLegScale = diverLegScale;
 
 // Shin
-var diverShinScale = [0.2, 0.6, diverZScale];
-var diverShinYPos = -3.4
+var diverShinScale = [1, 1, 1];
+var diverShinYPos = -2
+
 var diverLeftShinPosition = [0,diverShinYPos,0];
 var diverLeftShinRotation = [0,0,0];
 var diverLeftShinScale = diverShinScale;
@@ -373,8 +375,8 @@ function render(timestamp) {
     // Diver body
     gPush();
         gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
-            diverBodyRotation[1] = diverBodyRotation[1] + 50*dt;
-            gRotate(diverBodyRotation[1], 0, 1, 0);
+        diverBodyRotation[1] = diverBodyRotation[1] + 50*dt;
+        gRotate(diverBodyRotation[1], 0, 1, 0);
         gPush();
         {
             setColor(colorBlue);
@@ -401,6 +403,15 @@ function render(timestamp) {
                 gScale(diverLeftLegScale[0], diverLeftLegScale[1], diverLeftLegScale[2]);
                 drawCube();
             }
+                // Diver left shin
+                gPush();
+                gTranslate(diverLeftShinPosition[0], diverLeftShinPosition[1], diverLeftShinPosition[2]);
+                {
+                    setColor(colorBlue);
+                    gScale(diverLeftShinScale[0], diverLeftShinScale[1], diverLeftShinScale[2]);
+                    drawCube();
+                }
+                gPop();
             gPop();
 
             // Diver right leg
@@ -411,6 +422,15 @@ function render(timestamp) {
                 gScale(diverRightLegScale[0], diverRightLegScale[1], diverRightLegScale[2]);
                 drawCube();
             }
+                // Diver left shin
+                gPush();
+                gTranslate(diverRightShinPosition[0], diverRightShinPosition[1], diverRightShinPosition[2]);
+                {
+                    setColor(colorBlue);
+                    gScale(diverRightShinScale[0], diverRightShinScale[1], diverRightShinScale[2]);
+                    drawCube();
+                }
+                gPop();
             gPop();
 
     gPop();
