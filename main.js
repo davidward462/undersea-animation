@@ -297,14 +297,6 @@ function gPush() {
 
 // Custom functions for assignment 
 
-function createSeaweed(x, y, z, offsetY) {
-    
-}
-
-function createSeeweedStrand(length) {
-
-}
-
 
 function render(timestamp) {
     
@@ -453,25 +445,6 @@ function render(timestamp) {
                 }
                 gPop();
             gPop();
-
-        
-        // Seaweed
-        gPush();
-        gTranslate(seaweedPosition[0], seaweedPosition[1], seaweedPosition[2]);
-        {
-            setColor(colorGreen);
-            gScale(seaweedScale[0], seaweedScale[1], seaweedScale[2]);
-            drawSphere();
-        }
-            gPush();
-            gTranslate(0, 1, 0);
-            {
-                setColor(colorGreen);
-                gScale(seaweedScale[0], seaweedScale[1], seaweedScale[2]);
-                drawSphere();
-            }
-            gPop();
-        gPop();
 
     gPop();
 
