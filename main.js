@@ -56,11 +56,11 @@ var centerPosition = [0,0,0];
 var noRotation = [0,0,0];
 
 // rocks
-var rock1Position = [0,-3.5,0];
+var rock1Position = [0,1.5,0];
 var rock1Rotation = [0,0,0];
 var rock1Scale = [0.5, 0.5, 0.5];
 
-var rock2Position = [-1,-3.7,0];
+var rock2Position = [1,1.3,0];
 var rock2Rotation = [0,0,0];
 var rock2Scale = [0.3, 0.3, 0.3];
 
@@ -321,29 +321,6 @@ function render(timestamp) {
 		prevTime = timestamp;
 	}
 	
-    // Rock 1
-    gPush();
-        gTranslate(rock1Position[0], rock1Position[1], rock1Position[2]);
-        gPush();
-        {
-            setColor(colorLightgrey);
-            gScale(rock1Scale);
-            //drawSphere();
-        }
-        gPop();
-    gPop();
-    
-    // Rock 2
-    gPush();
-        gTranslate(rock2Position[0], rock2Position[1], rock2Position[2]);
-        gPush();
-        {
-            setColor(colorLightgrey);
-            gScale(rock2Scale);
-            //drawSphere();
-        }
-        gPop();
-    gPop();
 
 
     // Ground
@@ -356,6 +333,31 @@ function render(timestamp) {
             drawCube();
         }
         gPop();
+
+        // Rock 1
+        gPush();
+            gTranslate(rock1Position[0], rock1Position[1], rock1Position[2]);
+            gPush();
+            {
+                setColor(colorLightgrey);
+                gScale(rock1Scale);
+                drawSphere();
+            }
+            gPop();
+        gPop();
+        
+        // Rock 2
+        gPush();
+            gTranslate(rock2Position[0], rock2Position[1], rock2Position[2]);
+            gPush();
+            {
+                setColor(colorLightgrey);
+                gScale(rock2Scale);
+                drawSphere();
+            }
+            gPop();
+        gPop();
+
     gPop();
     
     // Fish body
@@ -367,7 +369,7 @@ function render(timestamp) {
             fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
             gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-			drawCone();
+			//drawCone();
 		}
         gPop();
 	gPop();
@@ -381,7 +383,7 @@ function render(timestamp) {
         {
             setColor(colorBlue);
             gScale(diverBodyScale[0], diverBodyScale[1], diverBodyScale[2]);
-            drawCube();
+            //drawCube();
         }
         gPop();
 
@@ -391,7 +393,7 @@ function render(timestamp) {
             {
                 setColor(colorBlue);
                 gScale(diverHeadScale[0], diverHeadScale[1], diverHeadScale[2]);
-                drawSphere();
+                //drawSphere();
             }
             gPop();
 
@@ -401,7 +403,7 @@ function render(timestamp) {
             {
                 setColor(colorBlue);
                 gScale(diverLeftLegScale[0], diverLeftLegScale[1], diverLeftLegScale[2]);
-                drawCube();
+                //drawCube();
             }
                 // Diver left shin
                 gPush();
@@ -409,7 +411,7 @@ function render(timestamp) {
                 {
                     setColor(colorBlue);
                     gScale(diverLeftShinScale[0], diverLeftShinScale[1], diverLeftShinScale[2]);
-                    drawCube();
+                   //drawCube();
                 }
                 gPop();
             gPop();
@@ -420,7 +422,7 @@ function render(timestamp) {
             {
                 setColor(colorBlue);
                 gScale(diverRightLegScale[0], diverRightLegScale[1], diverRightLegScale[2]);
-                drawCube();
+                //drawCube();
             }
                 // Diver left shin
                 gPush();
@@ -428,7 +430,7 @@ function render(timestamp) {
                 {
                     setColor(colorBlue);
                     gScale(diverRightShinScale[0], diverRightShinScale[1], diverRightShinScale[2]);
-                    drawCube();
+                    //drawCube();
                 }
                 gPop();
             gPop();
