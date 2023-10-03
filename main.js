@@ -115,6 +115,13 @@ var diverRightShinPosition = [0,diverShinYPos,0];
 var diverRightShinRotation = [0,0,0];
 var diverRightShinScale = diverShinScale;
 
+// seaweed
+var seaweedSize = 0.12;
+var seaweedOffsetY = 0.2;
+var seaweedPosition = [0,0.2,0];
+var seaweedRotation = [0,0,0]; 
+var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
+ 
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
 var colorBlack = vec4(0.0, 0.0, 0.0, 1.0);
@@ -288,6 +295,17 @@ function gPush() {
 }
 
 
+// Custom functions for assignment 
+
+function createSeaweed(x, y, z, offsetY) {
+    
+}
+
+function createSeeweedStrand(length) {
+
+}
+
+
 function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -435,6 +453,25 @@ function render(timestamp) {
                 }
                 gPop();
             gPop();
+
+        
+        // Seaweed
+        gPush();
+        gTranslate(seaweedPosition[0], seaweedPosition[1], seaweedPosition[2]);
+        {
+            setColor(colorGreen);
+            gScale(seaweedScale[0], seaweedScale[1], seaweedScale[2]);
+            drawSphere();
+        }
+            gPush();
+            gTranslate(0, 1, 0);
+            {
+                setColor(colorGreen);
+                gScale(seaweedScale[0], seaweedScale[1], seaweedScale[2]);
+                drawSphere();
+            }
+            gPop();
+        gPop();
 
     gPop();
 
