@@ -123,6 +123,7 @@ var colorLightgrey = vec4(0.5, 0.5, 0.5, 1.0);
 var colorRed = vec4(1.0, 0.0, 0.0, 1.0);
 var colorGreen = vec4(0.0, 1.0, 0.0, 1.0);
 var colorBlue = vec4(0.0, 0.0, 1.0, 1.0);
+var colorSand = vec4(1.0, 1.0, 0.0, 1.0);
 
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
@@ -328,7 +329,7 @@ function render(timestamp) {
         gTranslate(groundPosition[0], groundPosition[1], groundPosition[2]);
         gPush();
         {
-            setColor(colorLightgrey);
+            setColor(colorSand);
             gScale(groundScale[0], groundScale[1], groundScale[2]);
             drawCube();
         }
