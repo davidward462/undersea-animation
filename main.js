@@ -297,6 +297,20 @@ function gPush() {
 
 // Custom functions for assignment 
 
+// Create and draw rock
+function createRock(transform, scale, color) {
+    
+    gPush();
+        gTranslate(transform[0], transform[1], transform[2]);
+        gPush();
+        {
+            setColor(color);
+            gScale(scale);
+            drawSphere();
+        }
+        gPop();
+    gPop();
+}
 
 function render(timestamp) {
     
@@ -346,16 +360,7 @@ function render(timestamp) {
         gPop();
 
         // Rock 1
-        gPush();
-            gTranslate(rock1Position[0], rock1Position[1], rock1Position[2]);
-            gPush();
-            {
-                setColor(colorLightgrey);
-                gScale(rock1Scale);
-                drawSphere();
-            }
-            gPop();
-        gPop();
+        createRock(rock1Position, rock1Scale, colorLightgrey);
         
         // Rock 2
         gPush();
