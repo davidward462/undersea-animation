@@ -55,6 +55,11 @@ var controller;
 var centerPosition = [0,0,0];
 var noRotation = [0,0,0];
 
+// Ground
+var groundPosition = [0,-5,0];
+var groundRotation = [0,0,0];
+var groundScale = [6,1,1];
+
 // rocks
 var rock1Position = [0,1.5,0];
 var rock1Rotation = [0,0,0];
@@ -63,11 +68,6 @@ var rock1Scale = [0.5, 0.5, 0.5];
 var rock2Position = [1,1.3,0];
 var rock2Rotation = [0,0,0];
 var rock2Scale = [0.3, 0.3, 0.3];
-
-// Ground
-var groundPosition = [0,-5,0];
-var groundRotation = [0,0,0];
-var groundScale = [6,1,1];
 
 // Fish body
 var fishBodyPosition = [-2,0,0];
@@ -297,6 +297,18 @@ function gPush() {
 
 // Custom functions for assignment 
 
+function createGround(transform, scale, color) {
+
+    gTranslate(transform[0], transform[1], transform[2]);
+    gPush();
+    {
+        setColor(color);
+        gScale(scale[0], scale[1], scale[2]);
+        drawCube();
+    }
+    gPop();
+}
+
 // Create and draw rock
 function createRock(transform, scale, color) {
     
@@ -350,29 +362,14 @@ function render(timestamp) {
 
     // Ground
     gPush();
-        gTranslate(groundPosition[0], groundPosition[1], groundPosition[2]);
-        gPush();
-        {
-            setColor(colorSand);
-            gScale(groundScale[0], groundScale[1], groundScale[2]);
-            drawCube();
-        }
-        gPop();
+
+        createGround(groundPosition, groundScale, colorSand);
 
         // Rock 1
         createRock(rock1Position, rock1Scale, colorLightgrey);
         
         // Rock 2
-        gPush();
-            gTranslate(rock2Position[0], rock2Position[1], rock2Position[2]);
-            gPush();
-            {
-                setColor(colorLightgrey);
-                gScale(rock2Scale);
-                drawSphere();
-            }
-            gPop();
-        gPop();
+        createRock(rock2Position, rock2Scale, colorLightgrey);
 
     gPop();
     
