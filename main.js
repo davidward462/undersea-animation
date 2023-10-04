@@ -58,7 +58,7 @@ var noRotation = [0,0,0];
 // Ground
 var groundPosition = [0,-5,0];
 var groundRotation = [0,0,0];
-var groundScale = [6,1,1];
+var groundScale = [6,1,6];
 
 // rocks
 var rock1Position = [0,1.5,0];
