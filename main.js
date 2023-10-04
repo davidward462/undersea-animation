@@ -382,7 +382,7 @@ function render(timestamp) {
             fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
             gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-			//drawCone();
+			drawCone();
 		}
         gPop();
 	gPop();
@@ -396,7 +396,7 @@ function render(timestamp) {
         {
             setColor(colorBlue);
             gScale(diverBodyScale[0], diverBodyScale[1], diverBodyScale[2]);
-            //drawCube();
+            drawCube();
         }
         gPop();
 
@@ -406,7 +406,7 @@ function render(timestamp) {
             {
                 setColor(colorBlue);
                 gScale(diverHeadScale[0], diverHeadScale[1], diverHeadScale[2]);
-                //drawSphere();
+                drawSphere();
             }
             gPop();
 
@@ -416,7 +416,7 @@ function render(timestamp) {
             {
                 setColor(colorBlue);
                 gScale(diverLeftLegScale[0], diverLeftLegScale[1], diverLeftLegScale[2]);
-                //drawCube();
+                drawCube();
             }
                 // Diver left shin
                 gPush();
@@ -424,7 +424,7 @@ function render(timestamp) {
                 {
                     setColor(colorBlue);
                     gScale(diverLeftShinScale[0], diverLeftShinScale[1], diverLeftShinScale[2]);
-                   //drawCube();
+                   drawCube();
                 }
                 gPop();
             gPop();
@@ -435,7 +435,7 @@ function render(timestamp) {
             {
                 setColor(colorBlue);
                 gScale(diverRightLegScale[0], diverRightLegScale[1], diverRightLegScale[2]);
-                //drawCube();
+                drawCube();
             }
                 // Diver left shin
                 gPush();
@@ -443,7 +443,7 @@ function render(timestamp) {
                 {
                     setColor(colorBlue);
                     gScale(diverRightShinScale[0], diverRightShinScale[1], diverRightShinScale[2]);
-                    //drawCube();
+                    drawCube();
                 }
                 gPop();
             gPop();
