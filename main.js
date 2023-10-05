@@ -118,7 +118,7 @@ var diverRightShinScale = diverShinScale;
 // seaweed
 var seaweedSize = 0.12;
 var seaweedOffsetY = 0.2;
-var seaweedPosition = [0,0.2,0];
+var seaweedPosition = [0,0.5,0];
 var seaweedRotation = [0,0,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
  
@@ -324,9 +324,28 @@ function createRock(transform, scale, color) {
     gPop();
 }
 
-function createSeaweedStrand()
+function createSeaweedStrand(segmentCount, transform, color, scale)
 {
+    // base case
+    if (segmentCount == 0)
+    {
+        return;
+    }
+
+    // body
+    gPush();
+        gTranslate(transform[0], transform[1], transform[2]);
+        gPush();
+        {
+            setColor(color);
+            gScale(scale);
+            drawSphere();
+        }
+        gPop();
     
+    // recursion
+    createSeaweedStrand(segmentCount - 1);
+    gPop();
 }
 
 function render(timestamp) {
@@ -468,6 +487,7 @@ function render(timestamp) {
 
     */
 
+    createSeaweedStrand(3, seaweedPosition, colorGreen, seaweedScale);
 
     
     if( animFlag )
