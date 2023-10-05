@@ -363,13 +363,13 @@ function render(timestamp) {
     // Ground
     gPush();
 
-        createGround(groundPosition, groundScale, colorSand);
+        //createGround(groundPosition, groundScale, colorSand);
 
         // Rock 1
-        createRock(rock1Position, rock1Scale, colorLightgrey);
+        //createRock(rock1Position, rock1Scale, colorLightgrey);
         
         // Rock 2
-        createRock(rock2Position, rock2Scale, colorLightgrey);
+        //createRock(rock2Position, rock2Scale, colorLightgrey);
 
     gPop();
     
@@ -382,7 +382,7 @@ function render(timestamp) {
 		{
 			setColor(colorRed);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-			drawCone();
+			//drawCone();
 		}
         gPop();
 
@@ -391,7 +391,7 @@ function render(timestamp) {
             {
                 setColor(colorWhite);
                 gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
-                drawCone();
+                //drawCone();
             }
             gPop();
 	gPop();
