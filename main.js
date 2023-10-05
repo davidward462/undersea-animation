@@ -324,6 +324,11 @@ function createRock(transform, scale, color) {
     gPop();
 }
 
+function createSeaweedStrand()
+{
+    
+}
+
 function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
