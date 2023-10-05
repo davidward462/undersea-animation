@@ -344,7 +344,7 @@ function createSeaweedStrand(segmentCount, transform, color, scale)
         gPop();
     
     // recursion
-    createSeaweedStrand(segmentCount - 1);
+    createSeaweedStrand( (segmentCount - 1), transform, color, scale);
     gPop();
 }
 
@@ -487,7 +487,7 @@ function render(timestamp) {
 
     */
 
-    createSeaweedStrand(3, seaweedPosition, colorGreen, seaweedScale);
+    createSeaweedStrand(10, seaweedPosition, colorGreen, seaweedScale);
 
     
     if( animFlag )
