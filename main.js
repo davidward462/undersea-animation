@@ -390,7 +390,7 @@ function render(timestamp) {
     // Diver body
     gPush();
         gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
-        diverBodyRotation[1] = diverBodyRotation[1] + 50*dt;
+        diverBodyRotation[1] = 30*Math.cos(radians(timestamp)/2.0);
         gRotate(diverBodyRotation[1], 0, 1, 0);
         gPush();
         {
