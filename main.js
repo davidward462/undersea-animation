@@ -396,6 +396,8 @@ function render(timestamp) {
             gPop();
 	gPop();
 
+
+    /*
     // Diver body
     gPush();
         gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
@@ -458,6 +460,8 @@ function render(timestamp) {
             gPop();
 
     gPop();
+
+    */
 
 
     
