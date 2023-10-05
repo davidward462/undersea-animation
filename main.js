@@ -75,9 +75,9 @@ var fishBodyRotation = [0,90,0];
 var fishBodyScale = [0.5, 0.5, 2];
 
 // Fish head
-var fishHeadPosition = [0,0,0];
+var fishHeadPosition = [0,0,-1.5];
 var fishHeadRotation = [0,0,0];
-var fishHeadScale = [fishBodyScale[0], fishBodyScale[1], 1];
+var fishHeadScale = [0.5, 0.5, -1];
 
 // Diver
 var diverZScale = 0.2
@@ -376,21 +376,30 @@ function render(timestamp) {
     // Fish body
 	gPush();
 		gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
+        fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
+        gRotate(fishBodyRotation[1],0,1,0);
         gPush();
 		{
 			setColor(colorRed);
-            fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
-            gRotate(fishBodyRotation[1],0,1,0);
             gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
 			drawCone();
 		}
         gPop();
+
+            gTranslate(fishHeadPosition[0],fishHeadPosition[1],fishHeadPosition[2]);
+            gPush();
+            {
+                setColor(colorWhite);
+                gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
+                drawCone();
+            }
+            gPop();
 	gPop();
 
     // Diver body
     gPush();
         gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
-        diverBodyRotation[1] = 30*Math.cos(radians(timestamp)/2.0);
+        //diverBodyRotation[1] = 30*Math.cos(radians(timestamp)/2.0);
         gRotate(diverBodyRotation[1], 0, 1, 0);
         gPush();
         {
