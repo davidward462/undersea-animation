@@ -61,7 +61,7 @@ var groundRotation = [0,0,0];
 var groundScale = [6,1,6];
 
 // rocks
-var rock1Position = [0,4.5,0];
+var rock1Position = [0,1.5,0];
 var rock1Rotation = [0,0,0];
 var rock1Scale = [0.5, 0.5, 0.5];
 
@@ -340,7 +340,7 @@ function createSeaweedStrand(segmentCount, transform, color, scale)
             drawSphere();
         }
         gPop();
-    
+
     // recursion
     createSeaweedStrand( (segmentCount - 1), transform, color, scale);
     gPop();
@@ -381,7 +381,6 @@ function render(timestamp) {
 	}
 	
 
-
     // Ground
     gPush();
 
@@ -390,7 +389,7 @@ function render(timestamp) {
         // Rock 1
         gPush();
             createRock(rock1Position, rock1Scale, colorLightgrey);
-            createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale);
+            createSeaweedStrand(3, [0, 0, 0], colorGreen, seaweedScale);
         gPop();
         
         // Rock 2
