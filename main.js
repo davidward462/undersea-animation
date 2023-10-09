@@ -389,7 +389,12 @@ function render(timestamp) {
         // Rock 1
         gPush();
             createRock(rock1Position, rock1Scale, colorLightgrey);
-            createSeaweedStrand(3, [0, 0, 0], colorGreen, seaweedScale);
+
+            gPush();
+                gTranslate(0, 0.2, 0);
+                createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale);
+            gPop();
+
         gPop();
         
         // Rock 2
