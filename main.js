@@ -119,7 +119,7 @@ var diverRightShinScale = diverShinScale;
 var seaweedSize = 0.12;
 var seaweedOffsetY = 0.2;
 var seaweedStrandPosition = [0,0,0];
-var seaweedRotation = [0,0,0]; 
+var seaweedRotation = [0,1,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
  
 // colors
@@ -322,7 +322,12 @@ function createRock(transform, scale, color) {
     gPop();
 }
 
-function createSeaweedStrand(segmentCount, transform, color, scale)
+/**
+rotation[1] = 30*Math.cos(radians(timestamp));
+gRotate(rotation[1], 0, 1, 0);
+**/
+
+function createSeaweedStrand(segmentCount, transform, color, scale, rotation)
 {
     // base case
     if (segmentCount == 0)
@@ -341,8 +346,8 @@ function createSeaweedStrand(segmentCount, transform, color, scale)
         }
         gPop();
 
-    // recursion
-    createSeaweedStrand( (segmentCount - 1), transform, color, scale);
+        // recursion
+        createSeaweedStrand( (segmentCount - 1), transform, color, scale, rotation);
     gPop();
 }
 
@@ -386,13 +391,18 @@ function render(timestamp) {
 
         createGround(groundPosition, groundScale, colorSand);
 
+        gPush();
+            gTranslate(-1, 0.8, 0);
+            createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
+        gPop();
+
         // Rock 1
         gPush();
             createRock(rock1Position, rock1Scale, colorLightgrey);
 
             gPush();
                 gTranslate(0, 0.2, 0);
-                createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale);
+                createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
             gPop();
 
         gPop();
