@@ -82,7 +82,7 @@ var fishHeadScale = [0.5, 0.5, -1];
 // Diver
 var diverZScale = 0.2
 var diverBodyPosition = [0,0,0];
-var diverBodyRotation = [0,0,0];
+var diverBodyRotation = [0,20,0];
 var diverBodyScale = [0.6,1,diverZScale];
 
 // Head
@@ -446,6 +446,7 @@ function render(timestamp) {
         var shift = 0.5*Math.cos(radians(timestamp)/50);
         diverBodyPosition[1] = shift
         diverBodyPosition[0] = shift
+            gRotate(diverBodyRotation[1], 0, 1, 0);
         gPush();
         {
             setColor(colorBlue);
