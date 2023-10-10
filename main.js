@@ -80,13 +80,13 @@ var fishHeadRotation = [0,0,0];
 var fishHeadScale = [0.5, 0.5, -1];
 
 // Diver
-var diverZScale = 0.2
-var diverBodyPosition = [-3,1,0];
+var diverZScale = 0.3
+var diverBodyPosition = [0,-1.4,0];
 var diverBodyRotation = [0,35,0];
 var diverBodyScale = [0.6,1,diverZScale];
 
 // Head
-var diverHeadPosition = [0,1.4,0];
+var diverHeadPosition = [0,0,0];
 var diverHeadRotation = [0,0,0];
 var diverHeadScaleValue = 0.4
 var diverHeadScale = [diverHeadScaleValue, diverHeadScaleValue, diverHeadScaleValue];
@@ -121,6 +121,8 @@ var seaweedOffsetY = 0.2;
 var seaweedStrandPosition = [0,0,0];
 var seaweedRotation = [0,1,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
+
+var noScale = [1, 1, 1];
  
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -131,6 +133,12 @@ var colorRed = vec4(1.0, 0.0, 0.0, 1.0);
 var colorGreen = vec4(0.0, 1.0, 0.0, 1.0);
 var colorBlue = vec4(0.0, 0.0, 1.0, 1.0);
 var colorSand = vec4(1.0, 1.0, 0.0, 1.0);
+var colorDiver = colorBlue;
+var colorDiverHead = colorRed;
+var colorDiverBody = colorDiver;
+var colorDiverUpperLeg = colorGreen;
+var colorDiverLowerLeg = colorLightgrey;
+var colorDiverFoot = colorBlack;
 
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
@@ -377,7 +385,7 @@ function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
-    eye = vec3(0,0,10);
+    eye = vec3(5,5,10);
     MS = []; // Initialize modeling matrix stack
 	
 	// initialize the modeling matrix to identity
@@ -410,9 +418,9 @@ function render(timestamp) {
 
     // Ground
     gPush();
-
         createGround(groundPosition, groundScale, colorSand);
 
+        // Seaweed on ground
         gPush();
             gTranslate(-1, 0.8, 0);
             createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
@@ -422,6 +430,7 @@ function render(timestamp) {
         gPush();
             createRock(rock1Position, rock1Scale, colorLightgrey);
 
+            // seaweed on rock
             gPush();
                 gTranslate(0, 0.2, 0);
                 createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
@@ -434,82 +443,113 @@ function render(timestamp) {
             createRock(rock2Position, rock2Scale, colorLightgrey);
         gPop();
 
-        
-
+    // End ground
     gPop();
     
     // Fish body
-	gPush();
-		gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
-        fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
-        gRotate(fishBodyRotation[1],0,1,0);
-        gPush();
-		{
-			setColor(colorRed);
-            gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-			//drawCone();
-		}
-        gPop();
+	// gPush();
+	// 	gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
+    //     fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
+    //     gRotate(fishBodyRotation[1],0,1,0);
+    //     gPush();
+	// 	{
+	// 		setColor(colorRed);
+    //         gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
+	// 		//drawCone();
+	// 	}
+    //     gPop();
 
-            gTranslate(fishHeadPosition[0],fishHeadPosition[1],fishHeadPosition[2]);
-            gPush();
-            {
-                setColor(colorWhite);
-                gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
-                //drawCone();
-            }
-            gPop();
-	gPop();
+    //         gTranslate(fishHeadPosition[0],fishHeadPosition[1],fishHeadPosition[2]);
+    //         gPush();
+    //         {
+    //             setColor(colorWhite);
+    //             gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
+    //             //drawCone();
+    //         }
+    //         gPop();
+    // // end fish 
+	// gPop();
 
+    /**
+     *  head
+     *      body
+     *          upper leg
+     *              lower leg
+     *                  foot
+     *          upper leg
+     *              lower leg
+     *                  foot
+     * 
+     * 
+     */
 
-    // Diver body
+    // Diver
     gPush();
-
-        gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
-        var shift = 0.5*Math.cos(radians(timestamp)/50);
-        diverBodyPosition[1] = shift
-        diverBodyPosition[0] = shift
-        gRotate(diverBodyRotation[1], 0, 1, 0);
-
-        gPush();
-        {
-            setColor(colorBlue);
-            gScale(diverBodyScale[0], diverBodyScale[1], diverBodyScale[2]);
-            drawCube();
-        }
-        gPop();
-
-        // Diver head
-        gPush();
-            createSpheroid(diverHeadPosition,diverHeadScale, colorBlue);
-        gPop();
-
-        gPush();
-            
-            // rotation
-            diverLeftLegRotation[2] = diverLeftLegRotation[2] + 0.5*Math.cos(radians(timestamp)/5); 
-            gRotate(diverLeftLegRotation[2], 0, 0, 1);
-
-            // Diver left leg
-            createCuboid(diverLeftLegPosition, diverLeftLegScale, colorBlue);
-
+        gTranslate(-2, 2, 0); // diver frame position
+        
+        gPush(); // Head
             gPush();
-            // Diver left shin
-            createCuboid(diverLeftShinPosition, diverLeftShinScale, colorBlue);
+                {
+                    setColor(colorDiverHead);
+                    gScale(diverHeadScale[0], diverHeadScale[1], diverHeadScale[2]);
+                    drawSphere();
+                }
             gPop();
-        gPop();
+            
+            gPush(); // Body
 
-        gPush();
+                gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
+                gPush(); // body scale
+                    {
+                        setColor(colorDiverBody);
+                        gScale(diverBodyScale);
+                        drawCube();
+                    }
+                gPop(); // end body scale
 
-            // Diver right leg
-            createCuboid(diverRightLegPosition, diverRightLegScale, colorBlue);
+                gPush(); // left leg
+                    gTranslate(-0.4, -1.5, 0);
+                    {
+                        setColor(colorDiverUpperLeg);
+                        gScale(diverLegScale);
+                        drawCube();
+                    }
 
-            // Diver right shin
-            createCuboid(diverRightShinPosition, diverRightShinScale, colorBlue);
-        gPop();
+                    gPush(); // lower leg
+                        gTranslate(0, -2, 0);
+                        {
+                            setColor(colorDiverLowerLeg);
+                            gScale(noScale);
+                            drawCube();
+                        }
+                    gPop(); // end lower leg
 
-    gPop();
+                gPop(); // end left leg
 
+                gPush(); // right leg
+                    gTranslate(0.4, -1.5, 0);
+                    {
+                        setColor(colorDiverUpperLeg);
+                        gScale(diverLegScale);
+                        drawCube();
+                    }
+
+                    gPush(); // lower leg
+                        gTranslate(0, -2, 0);
+                        {
+                            setColor(colorDiverLowerLeg);
+                            gScale(noScale);
+                            drawCube();
+                        }
+                    gPop(); // end lower leg
+
+                gPop(); // end right leg
+            
+            gPop(); // End Body
+        
+        gPop(); // End head
+
+    gPop();// End diver
 
     
     if( animFlag )
