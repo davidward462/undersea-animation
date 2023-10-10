@@ -440,12 +440,12 @@ function render(timestamp) {
 	gPop();
 
 
-    /*
     // Diver body
     gPush();
         gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
-        //diverBodyRotation[1] = 30*Math.cos(radians(timestamp)/2.0);
-        gRotate(diverBodyRotation[1], 0, 1, 0);
+        var shift = 0.5*Math.cos(radians(timestamp)/50);
+        diverBodyPosition[1] = shift
+        diverBodyPosition[0] = shift
         gPush();
         {
             setColor(colorBlue);
@@ -504,7 +504,6 @@ function render(timestamp) {
 
     gPop();
 
-    */
 
     
     if( animFlag )
