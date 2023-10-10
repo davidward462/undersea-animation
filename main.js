@@ -446,42 +446,7 @@ function render(timestamp) {
     // End ground
     gPop();
     
-    // Fish body
-	// gPush();
-	// 	gTranslate(fishBodyPosition[0],fishBodyPosition[1],fishBodyPosition[2]);
-    //     fishBodyRotation[1] = fishBodyRotation[1] + 90*dt;
-    //     gRotate(fishBodyRotation[1],0,1,0);
-    //     gPush();
-	// 	{
-	// 		setColor(colorRed);
-    //         gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-	// 		//drawCone();
-	// 	}
-    //     gPop();
 
-    //         gTranslate(fishHeadPosition[0],fishHeadPosition[1],fishHeadPosition[2]);
-    //         gPush();
-    //         {
-    //             setColor(colorWhite);
-    //             gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
-    //             //drawCone();
-    //         }
-    //         gPop();
-    // // end fish 
-	// gPop();
-
-    /**
-     *  head
-     *      body
-     *          upper leg
-     *              lower leg
-     *                  foot
-     *          upper leg
-     *              lower leg
-     *                  foot
-     * 
-     * 
-     */
 
     // Diver
     gPush();
