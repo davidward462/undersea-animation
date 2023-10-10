@@ -138,7 +138,7 @@ var colorDiverHead = colorRed;
 var colorDiverBody = colorDiver;
 var colorDiverUpperLeg = colorGreen;
 var colorDiverLowerLeg = colorLightgrey;
-var colorDiverFoot = colorBlack;
+var colorDiverFoot = colorDarkgrey;
 
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
@@ -385,7 +385,7 @@ function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
-    eye = vec3(5,5,10);
+    eye = vec3(0,0,10);
     MS = []; // Initialize modeling matrix stack
 	
 	// initialize the modeling matrix to identity
@@ -522,6 +522,16 @@ function render(timestamp) {
                             gScale(noScale);
                             drawCube();
                         }
+
+                        gPush(); // foot
+                            gTranslate(0, -1.3, 0.7);
+                            {
+                                setColor(colorDiverFoot);
+                                gScale(1.2, 0.3, 1.7);
+                                drawCube();
+                            }
+                        gPop(); // end foot
+
                     gPop(); // end lower leg
 
                 gPop(); // end left leg
@@ -541,6 +551,17 @@ function render(timestamp) {
                             gScale(noScale);
                             drawCube();
                         }
+
+                        gPush(); // foot
+                            gTranslate(0, -1.3, 0.7);
+                            {
+                                setColor(colorDiverFoot);
+                                gScale(1.2, 0.3, 1.7);
+                                drawCube();
+                            }
+                        gPop(); // end foot
+
+
                     gPop(); // end lower leg
 
                 gPop(); // end right leg
