@@ -420,33 +420,62 @@ function render(timestamp) {
     gPush();
         createGround(groundPosition, groundScale, colorSand);
 
-        // Seaweed on ground
-        gPush();
+        gPush(); // seaweed
             gTranslate(-1, 0.8, 0);
             createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
-        gPop();
+        gPop(); // end seaweed
 
-        // Rock 1
-        gPush();
+        gPush(); // rock
             createRock(rock1Position, rock1Scale, colorLightgrey);
 
-            // seaweed on rock
-            gPush();
+            gPush(); // seaweed
                 gTranslate(0, 0.2, 0);
                 createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
-            gPop();
+            gPop(); // end seaweed
 
-        gPop();
+        gPop(); // end rock
         
-        // Rock 2
-        gPush();
+        gPush(); // rock
             createRock(rock2Position, rock2Scale, colorLightgrey);
-        gPop();
+        gPop(); // end rock
 
     // End ground
     gPop();
     
+    // Fish
+    gPush();
 
+        gPush(); // head
+
+            gPush(); //body
+
+                gPush(); // left eye
+
+                    gPush(); // // pupil
+                    gPop(); // end // pupil
+
+                gPop(); // end left eye
+
+                gPush(); // right eye
+
+                    gPush(); // pupil
+                    gPop(); // end pupil
+
+                gPop(); // end right eye
+
+                gPush(); // top fin
+                gPop(); // end top fin
+
+                gPush(); // bottom fin
+                gPop(); // end bottom fin
+
+
+            gPop(); // end body
+
+        gPop(); // end head
+
+    gPop();
+    // end fish
 
     // Diver
     gPush();
