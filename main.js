@@ -52,7 +52,7 @@ var controller;
 
 // Object states
 
-var centerPosition = [0,0,0];
+var origin = [0,0,0];
 var noRotation = [0,0,0];
 
 // Ground
@@ -96,7 +96,7 @@ var diverLegScale = [0.15, 0.5, diverZScale];
 var diverLegYPos = -2;
 
 var diverLeftLegPosition = [-0.4,diverLegYPos,0];
-var diverLeftLegRotation = [0,0,0];
+var diverLeftLegRotation = [0,0,20];
 var diverLeftLegScale = diverLegScale;
 
 var diverRightLegPosition = [0.4,diverLegYPos,0];
@@ -355,10 +355,11 @@ function createCuboid(translate, scale, color )
 {
 
     gTranslate(translate[0], translate[1], translate[2]);
+
     {
         setColor(color);
         gScale(scale[0], scale[1], scale[2]);
-       drawCube();
+        drawCube();
     }
 }
 
@@ -480,18 +481,26 @@ function render(timestamp) {
 
         // Diver head
         gPush();
-            createSpheroid(diverHeadPosition, diverHeadScale, colorBlue);
+            createSpheroid(diverHeadPosition,diverHeadScale, colorBlue);
         gPop();
 
         gPush();
+            
+            // rotation
+            diverLeftLegRotation[2] = diverLeftLegRotation[2] + 0.5*Math.cos(radians(timestamp)/5); 
+            gRotate(diverLeftLegRotation[2], 0, 0, 1);
+
             // Diver left leg
             createCuboid(diverLeftLegPosition, diverLeftLegScale, colorBlue);
 
+            gPush();
             // Diver left shin
             createCuboid(diverLeftShinPosition, diverLeftShinScale, colorBlue);
+            gPop();
         gPop();
 
         gPush();
+
             // Diver right leg
             createCuboid(diverRightLegPosition, diverRightLegScale, colorBlue);
 
