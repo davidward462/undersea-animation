@@ -5,21 +5,21 @@ An animation in WebGL. A project for an 3rd year graphics course.
 
 1.
 
-2. Ground box is a scaled and transformed cube.
+2. Ground box exists
 
-3. The two rocks exist within the ground's frame.
+3. Two spherical rocks exist within the ground's frame.
 
-4.
+4. Seaweed has 10 segments
 
 5.
 
-6.
+6. 2 seaweed strands exist
 
 7.
 
 8.
 
-9.
+9. Diver model exists
 
 10.
 
@@ -27,9 +27,9 @@ An animation in WebGL. A project for an 3rd year graphics course.
 
 12.
 
-13.
+13. Scene is visually similar
 
-14.
+14. Comments are present in code
 
 15.
 
