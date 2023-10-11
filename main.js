@@ -387,8 +387,9 @@ function render(timestamp) {
     
     front = vec3(0,0,10);
     side = vec3(10, 0, 0);
-    top = vec3(1, 45, 0);
-    eye = front;
+    oblique = vec3(5, 5, 10);
+    eyeList = [front, side, oblique];
+    eye = eyeList[2];
 
     MS = []; // Initialize modeling matrix stack
 	
@@ -449,7 +450,7 @@ function render(timestamp) {
     // Fish
     gPush();
         gTranslate(3, 1, 0); // fish position
-        //gRotate(90, 0, 1, 0);
+        gRotate(90, 0, 1, 0);
         
         gPush(); // head
             gTranslate(0, 0, 0);
@@ -511,16 +512,23 @@ function render(timestamp) {
                 gPop();
 
                 gPush(); // top fin
-                    gTranslate(0, 0.5, 1.5);
+                    gTranslate(0, 0.25, 1.25);
                     gRotate(-30, 1, 0, 0);
                     {
                         setColor(colorBlue);
-                        gScale(0.2, 0.2, 2);
+                        gScale(0.1, 0.1, 1);
                         drawCone();
                     }
                 gPop(); // end top fin
 
                 gPush(); // bottom fin
+                    gTranslate(0, -0.25, 1.25);
+                    gRotate(30, 1, 0, 0);
+                    {
+                        setColor(colorBlue);
+                        gScale(0.1, 0.1, 1);
+                        drawCone();
+                    }
                 gPop(); // end bottom fin
 
 
