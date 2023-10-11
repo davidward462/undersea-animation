@@ -385,7 +385,7 @@ function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
-    eye = vec3(0,0,10);
+    eye = vec3(10,10,10);
     MS = []; // Initialize modeling matrix stack
 	
 	// initialize the modeling matrix to identity
@@ -444,24 +444,65 @@ function render(timestamp) {
     
     // Fish
     gPush();
-
+        gTranslate(3, 1, 0); // fish position
+        gRotate(90, 0, 1, 0);
+        
         gPush(); // head
+            gTranslate(0, 0, 0);
+            gPush();
+            {
+                setColor(colorWhite);
+                gScale(0.5, 0.5, 0.5);
+                drawCone();
+            }
+            gPop();
 
-            gPush(); //body
+            gPush(); // left eye
 
-                gPush(); // left eye
-
+                gTranslate(0.3, 0.3, 0);
+                {
+                    setColor(colorWhite);
+                    gScale(0.2, 0.2, 0.2);
+                    drawSphere();
+                }
                     gPush(); // // pupil
+                        gTranslate(0, 0, 0.8);
+                        {
+                            setColor(colorBlack);
+                            gScale(0.5, 0.5, 0.5);
+                            drawSphere();
+                        }
                     gPop(); // end // pupil
 
-                gPop(); // end left eye
+            gPop(); // end left eye
 
-                gPush(); // right eye
+            gPush(); // right eye
 
-                    gPush(); // pupil
-                    gPop(); // end pupil
+                gTranslate(-0.3, 0.3, 0);
+                {
+                    setColor(colorWhite);
+                    gScale(0.2, 0.2, 0.2);
+                    drawSphere();
+                }
+                gPush(); // // pupil
+                    gTranslate(0, 0, 0.8);
+                    {
+                        setColor(colorBlack);
+                        gScale(0.5, 0.5, 0.5);
+                        drawSphere();
+                    }
+                gPop(); // end // pupil
 
-                gPop(); // end right eye
+            gPop(); // end right eye
+
+            gPush(); //body
+                gTranslate(0, 0, -1.25);
+                gRotate(180, 0, 1, 0);
+                {
+                    setColor(colorRed);
+                    gScale(0.5, 0.5, 2);
+                    drawCone();
+                }
 
                 gPush(); // top fin
                 gPop(); // end top fin
