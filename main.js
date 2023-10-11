@@ -423,9 +423,10 @@ function render(timestamp) {
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
 
     // conditional render
-    diver = false;
+    diver = true;
     ground = true;
-    decor = false;
+    decor = true;
+    fish = true;
     
     // set all the matrices
     setAllMatrices();
@@ -477,29 +478,50 @@ function render(timestamp) {
         gPop();
     }
     
-    // Fish
-    gPush();
-        gTranslate(3, 1, 0); // fish position
-        gRotate(90, 0, 1, 0);
-        
-        gPush(); // head
-            gTranslate(0, 0, 0);
-            gPush();
-            {
-                setColor(colorFishHead);
-                gScale(0.5, 0.5, 0.5);
-                drawCone();
-            }
-            gPop();
-
-            gPush(); // left eye
-
-                gTranslate(0.3, 0.3, 0);
+    if(fish)
+    {
+        // Fish
+        gPush();
+            gTranslate(3, 1, 0); // fish position
+            gRotate(90, 0, 1, 0);
+            
+            gPush(); // head
+                gTranslate(0, 0, 0);
+                gPush();
                 {
-                    setColor(colorWhite);
-                    gScale(0.2, 0.2, 0.2);
-                    drawSphere();
+                    setColor(colorFishHead);
+                    gScale(0.5, 0.5, 0.5);
+                    drawCone();
                 }
+                gPop();
+
+                gPush(); // left eye
+
+                    gTranslate(0.3, 0.3, 0);
+                    {
+                        setColor(colorWhite);
+                        gScale(0.2, 0.2, 0.2);
+                        drawSphere();
+                    }
+                        gPush(); // // pupil
+                            gTranslate(0, 0, 0.8);
+                            {
+                                setColor(colorBlack);
+                                gScale(0.5, 0.5, 0.5);
+                                drawSphere();
+                            }
+                        gPop(); // end // pupil
+
+                gPop(); // end left eye
+
+                gPush(); // right eye
+
+                    gTranslate(-0.3, 0.3, 0);
+                    {
+                        setColor(colorWhite);
+                        gScale(0.2, 0.2, 0.2);
+                        drawSphere();
+                    }
                     gPush(); // // pupil
                         gTranslate(0, 0, 0.8);
                         {
@@ -509,65 +531,47 @@ function render(timestamp) {
                         }
                     gPop(); // end // pupil
 
-            gPop(); // end left eye
+                gPop(); // end right eye
 
-            gPush(); // right eye
+                gPush(); //body
+                    gTranslate(0, 0, -1.25);
+                    gRotate(180, 0, 1, 0);
+                    gPush();
+                        {
+                            setColor(colorFishBody);
+                            gScale(0.5, 0.5, 2);
+                            drawCone();
+                        }
+                    gPop();
 
-                gTranslate(-0.3, 0.3, 0);
-                {
-                    setColor(colorWhite);
-                    gScale(0.2, 0.2, 0.2);
-                    drawSphere();
-                }
-                gPush(); // // pupil
-                    gTranslate(0, 0, 0.8);
-                    {
-                        setColor(colorBlack);
-                        gScale(0.5, 0.5, 0.5);
-                        drawSphere();
-                    }
-                gPop(); // end // pupil
+                    gPush(); // top fin
+                        gTranslate(0, 0.25, 1.25);
+                        gRotate(-30, 1, 0, 0);
+                        {
+                            setColor(colorFishTail);
+                            gScale(0.1, 0.1, 1);
+                            drawCone();
+                        }
+                    gPop(); // end top fin
 
-            gPop(); // end right eye
-
-            gPush(); //body
-                gTranslate(0, 0, -1.25);
-                gRotate(180, 0, 1, 0);
-                gPush();
-                    {
-                        setColor(colorFishBody);
-                        gScale(0.5, 0.5, 2);
-                        drawCone();
-                    }
-                gPop();
-
-                gPush(); // top fin
-                    gTranslate(0, 0.25, 1.25);
-                    gRotate(-30, 1, 0, 0);
-                    {
-                        setColor(colorFishTail);
-                        gScale(0.1, 0.1, 1);
-                        drawCone();
-                    }
-                gPop(); // end top fin
-
-                gPush(); // bottom fin
-                    gTranslate(0, -0.25, 1.25);
-                    gRotate(30, 1, 0, 0);
-                    {
-                        setColor(colorFishTail);
-                        gScale(0.1, 0.1, 1);
-                        drawCone();
-                    }
-                gPop(); // end bottom fin
+                    gPush(); // bottom fin
+                        gTranslate(0, -0.25, 1.25);
+                        gRotate(30, 1, 0, 0);
+                        {
+                            setColor(colorFishTail);
+                            gScale(0.1, 0.1, 1);
+                            drawCone();
+                        }
+                    gPop(); // end bottom fin
 
 
-            gPop(); // end body
+                gPop(); // end body
 
-        gPop(); // end head
+            gPop(); // end head
 
-    gPop();
-    // end fish
+        gPop();
+        // end fish
+    }
 
     if(diver)
     {
