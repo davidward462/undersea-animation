@@ -73,6 +73,9 @@ var rock2Position = [1,1.3,0];
 var rock2Rotation = [0,0,0];
 var rock2Scale = [0.3, 0.3, 0.3];
 
+// Fish
+var fishRotation = [0, 0, 0];
+
 // Fish body
 var fishBodyPosition = [-2,0,0];
 var fishBodyRotation = [0,90,0];
@@ -423,9 +426,9 @@ function render(timestamp) {
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
 
     // conditional render
-    diver = true;
+    diver = false;
     ground = true;
-    decor = true;
+    decor = false;
     fish = true;
     
     // set all the matrices
@@ -481,9 +484,13 @@ function render(timestamp) {
     if(fish)
     {
         // Fish
+        // Rotate around the origin
         gPush();
-            gTranslate(3, 1, 0); // fish position
-            gRotate(90, 0, 1, 0);
+            gTranslate(0, -2, 0); // origin
+            fishRotation[1] = fishRotation[1] = timestamp*0.1;
+            gRotate(fishRotation[1], 0, 1, 0);
+            gTranslate(-2, 0, 0);
+            //gRotate(90, 0, 1, 0); // static rotate
             
             gPush(); // head
                 gTranslate(0, 0, 0);
