@@ -421,7 +421,11 @@ function render(timestamp) {
    
     // set the projection matrix
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
-    
+
+    // conditional render
+    diver = false;
+    ground = true;
+    decor = false;
     
     // set all the matrices
     setAllMatrices();
@@ -442,30 +446,36 @@ function render(timestamp) {
 	
 
     // Ground
-    gPush();
-        createGround(groundPosition, groundScale, colorSand);
+    if(ground)
+    {
+        gPush();
+            createGround(groundPosition, groundScale, colorSand);
 
-        gPush(); // seaweed
-            gTranslate(-1, 0.8, 0);
-            createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
-        gPop(); // end seaweed
+            if(decor)
+            {
+                gPush(); // seaweed
+                    gTranslate(-1, 0.8, 0);
+                    createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
+                gPop(); // end seaweed
 
-        gPush(); // rock
-            createRock(rock1Position, rock1Scale, colorStone);
+                gPush(); // rock
+                    createRock(rock1Position, rock1Scale, colorStone);
 
-            gPush(); // seaweed
-                gTranslate(0, 0.2, 0);
-                createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
-            gPop(); // end seaweed
+                    gPush(); // seaweed
+                        gTranslate(0, 0.2, 0);
+                        createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
+                    gPop(); // end seaweed
 
-        gPop(); // end rock
-        
-        gPush(); // rock
-            createRock(rock2Position, rock2Scale, colorStone);
-        gPop(); // end rock
+                gPop(); // end rock
+                
+                gPush(); // rock
+                    createRock(rock2Position, rock2Scale, colorStone);
+                gPop(); // end rock
+            }
 
-    // End ground
-    gPop();
+        // End ground
+        gPop();
+    }
     
     // Fish
     gPush();
@@ -559,7 +569,9 @@ function render(timestamp) {
     gPop();
     // end fish
 
-    // Diver
+    if(diver)
+    {
+        // Diver
     gPush();
         gTranslate(-2, 2, 0); // diver frame position
         
@@ -647,6 +659,8 @@ function render(timestamp) {
         gPop(); // End head
 
     gPop();// End diver
+    }
+    
 
     
     if( animFlag )
