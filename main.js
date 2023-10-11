@@ -486,10 +486,10 @@ function render(timestamp) {
         // Fish
         // Rotate around the origin
         gPush();
-            gTranslate(0, -2, 0); // origin
-            fishRotation[1] = fishRotation[1] = timestamp*0.1;
+            gTranslate(0, -3, 0); // origin
+            fishRotation[1] = fishRotation[1] = timestamp*0.05;
             gRotate(fishRotation[1], 0, 1, 0);
-            gTranslate(-2, 0, 0);
+            gTranslate(-3, 0, 0);
             //gRotate(90, 0, 1, 0); // static rotate
             
             gPush(); // head
