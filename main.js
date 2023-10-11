@@ -427,9 +427,9 @@ function render(timestamp) {
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
 
     // conditional render
-    diver = false;
+    diver = true;
     ground = true;
-    decor = false;
+    decor = true;
     fish = true;
     
     // set all the matrices
