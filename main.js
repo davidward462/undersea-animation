@@ -46,6 +46,10 @@ var resetTimerFlag = true;
 var animFlag = false;
 var controller;
 
+// toggle view angle with button
+var viewIndex = 0;
+var viewCount = 4;
+
 // These are used to store the current state of objects.
 // In animation it is often useful to think of an object as having some DOF
 // Then the animation is simply evolving those DOF over time.
@@ -223,6 +227,11 @@ window.onload = function init() {
 			window.requestAnimFrame(render); };
     };
 
+    document.getElementById("viewToggleButton").onclick = function () {
+        viewIndex++;
+        viewIndex = viewIndex % viewCount;
+    };
+
     render(0);
 }
 
@@ -387,9 +396,10 @@ function render(timestamp) {
     
     front = vec3(0,0,10);
     side = vec3(10, 0, 0);
-    oblique = vec3(5, 5, 10);
-    eyeList = [front, side, oblique];
-    eye = eyeList[2];
+    obliqueRight = vec3(5, 5, 10);
+    obliqueLeft = vec3(-5, 5, 10);
+    eyeList = [front, obliqueRight, side, obliqueLeft];
+    eye = eyeList[viewIndex];
 
     MS = []; // Initialize modeling matrix stack
 	
