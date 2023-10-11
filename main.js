@@ -75,6 +75,7 @@ var rock2Scale = [0.3, 0.3, 0.3];
 
 // Fish
 var fishRotation = [0, 0, 0];
+var tailRotation = [0, 0, 0];
 
 // Fish body
 var fishBodyPosition = [-2,0,0];
@@ -484,13 +485,13 @@ function render(timestamp) {
     if(fish)
     {
         // Fish
-        // Rotate around the origin
         gPush();
+
+            // Rotate around the origin
             gTranslate(0, -3, 0); // origin
-            fishRotation[1] = fishRotation[1] = timestamp*0.05;
+            fishRotation[1] =  timestamp*0.05;
             gRotate(fishRotation[1], 0, 1, 0);
-            gTranslate(-3, 0, 0);
-            //gRotate(90, 0, 1, 0); // static rotate
+            gTranslate(-3, 0, 0); // position
             
             gPush(); // head
                 gTranslate(0, 0, 0);
@@ -551,26 +552,31 @@ function render(timestamp) {
                         }
                     gPop();
 
-                    gPush(); // top fin
-                        gTranslate(0, 0.25, 1.25);
-                        gRotate(-30, 1, 0, 0);
-                        {
-                            setColor(colorFishTail);
-                            gScale(0.1, 0.1, 1);
-                            drawCone();
-                        }
-                    gPop(); // end top fin
+                    gPush(); // tail rotation
+                        tailRotation[1] = tailRotation[1] + 1.0*Math.cos( radians(timestamp) /3.0 );
+                        gRotate(tailRotation[1], 0, 1, 0);
 
-                    gPush(); // bottom fin
-                        gTranslate(0, -0.25, 1.25);
-                        gRotate(30, 1, 0, 0);
-                        {
-                            setColor(colorFishTail);
-                            gScale(0.1, 0.1, 1);
-                            drawCone();
-                        }
-                    gPop(); // end bottom fin
+                        gPush(); // top fin
+                            gTranslate(0, 0.25, 1.2);
+                            gRotate(-30, 1, 0, 0);
+                            {
+                                setColor(colorFishTail);
+                                gScale(0.1, 0.1, 1);
+                                drawCone();
+                            }
+                        gPop(); // end top fin
 
+                        gPush(); // bottom fin
+                            gTranslate(0, -0.25, 1.2);
+                            gRotate(30, 1, 0, 0);
+                            {
+                                setColor(colorFishTail);
+                                gScale(0.1, 0.1, 1);
+                                drawCone();
+                            }
+                        gPop(); // end bottom fin
+
+                    gPop(); // end tail rotation
 
                 gPop(); // end body
 
