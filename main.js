@@ -385,7 +385,11 @@ function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
-    eye = vec3(10,10,10);
+    front = vec3(0,0,10);
+    side = vec3(10, 0, 0);
+    top = vec3(1, 45, 0);
+    eye = front;
+
     MS = []; // Initialize modeling matrix stack
 	
 	// initialize the modeling matrix to identity
@@ -445,7 +449,7 @@ function render(timestamp) {
     // Fish
     gPush();
         gTranslate(3, 1, 0); // fish position
-        gRotate(90, 0, 1, 0);
+        //gRotate(90, 0, 1, 0);
         
         gPush(); // head
             gTranslate(0, 0, 0);
@@ -498,13 +502,22 @@ function render(timestamp) {
             gPush(); //body
                 gTranslate(0, 0, -1.25);
                 gRotate(180, 0, 1, 0);
-                {
-                    setColor(colorRed);
-                    gScale(0.5, 0.5, 2);
-                    drawCone();
-                }
+                gPush();
+                    {
+                        setColor(colorRed);
+                        gScale(0.5, 0.5, 2);
+                        drawCone();
+                    }
+                gPop();
 
                 gPush(); // top fin
+                    gTranslate(0, 0.5, 1.5);
+                    gRotate(-30, 1, 0, 0);
+                    {
+                        setColor(colorBlue);
+                        gScale(0.2, 0.2, 2);
+                        drawCone();
+                    }
                 gPop(); // end top fin
 
                 gPush(); // bottom fin
