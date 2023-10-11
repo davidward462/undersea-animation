@@ -131,18 +131,28 @@ var noScale = [1, 1, 1];
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
 var colorBlack = vec4(0.0, 0.0, 0.0, 1.0);
-var colorDarkgrey = vec4(0.1, 0.1, 0.1, 1.0);
-var colorLightgrey = vec4(0.5, 0.5, 0.5, 1.0);
-var colorRed = vec4(1.0, 0.0, 0.0, 1.0);
-var colorGreen = vec4(0.0, 1.0, 0.0, 1.0);
-var colorBlue = vec4(0.0, 0.0, 1.0, 1.0);
-var colorSand = vec4(1.0, 1.0, 0.0, 1.0);
-var colorDiver = colorBlue;
-var colorDiverHead = colorRed;
-var colorDiverBody = colorDiver;
-var colorDiverUpperLeg = colorGreen;
-var colorDiverLowerLeg = colorLightgrey;
-var colorDiverFoot = colorDarkgrey;
+var colorBattleshipGrey = vec4(0.5, 0.54, 0.53, 1.0);
+var colorViolet = vec4(0.5, 0.0, 1.0, 1.0);
+var colorYaleBlue = vec4(0.07, 0.38, 0.5, 1.0);
+var colorRed = vec4(1.0, 0.2, 0.33);
+var colorSeaGreen = vec4(0.18, 0.55, 0.34, 1.0);
+var colorCorn = vec4(1.0, 0.9, 0.4, 1.0);
+var colorPastelPink = vec4(1.0, 0.8, 0.84, 1.0);
+
+var colorSand = colorCorn;
+var colorStone = colorBattleshipGrey;
+var colorSeaweed = colorSeaGreen;
+
+var colorDiver = colorViolet;
+var colorDiverHead = colorViolet;
+var colorDiverBody = colorViolet;
+var colorDiverUpperLeg = colorViolet;
+var colorDiverLowerLeg = colorViolet;
+var colorDiverFoot = colorViolet;
+
+var colorFishHead = colorPastelPink;
+var colorFishBody = colorRed;
+var colorFishTail = colorRed;
 
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
@@ -312,7 +322,7 @@ function gPush() {
 }
 
 
-// Custom functions for assignment 
+// Custom functions for assignment
 
 function createGround(transform, scale, color) {
 
@@ -437,21 +447,21 @@ function render(timestamp) {
 
         gPush(); // seaweed
             gTranslate(-1, 0.8, 0);
-            createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
+            createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
         gPop(); // end seaweed
 
         gPush(); // rock
-            createRock(rock1Position, rock1Scale, colorLightgrey);
+            createRock(rock1Position, rock1Scale, colorStone);
 
             gPush(); // seaweed
                 gTranslate(0, 0.2, 0);
-                createSeaweedStrand(10, [0, 0.5, 0], colorGreen, seaweedScale, seaweedRotation);
+                createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
             gPop(); // end seaweed
 
         gPop(); // end rock
         
         gPush(); // rock
-            createRock(rock2Position, rock2Scale, colorLightgrey);
+            createRock(rock2Position, rock2Scale, colorStone);
         gPop(); // end rock
 
     // End ground
@@ -466,7 +476,7 @@ function render(timestamp) {
             gTranslate(0, 0, 0);
             gPush();
             {
-                setColor(colorWhite);
+                setColor(colorFishHead);
                 gScale(0.5, 0.5, 0.5);
                 drawCone();
             }
@@ -515,7 +525,7 @@ function render(timestamp) {
                 gRotate(180, 0, 1, 0);
                 gPush();
                     {
-                        setColor(colorRed);
+                        setColor(colorFishBody);
                         gScale(0.5, 0.5, 2);
                         drawCone();
                     }
@@ -525,7 +535,7 @@ function render(timestamp) {
                     gTranslate(0, 0.25, 1.25);
                     gRotate(-30, 1, 0, 0);
                     {
-                        setColor(colorBlue);
+                        setColor(colorFishTail);
                         gScale(0.1, 0.1, 1);
                         drawCone();
                     }
@@ -535,7 +545,7 @@ function render(timestamp) {
                     gTranslate(0, -0.25, 1.25);
                     gRotate(30, 1, 0, 0);
                     {
-                        setColor(colorBlue);
+                        setColor(colorFishTail);
                         gScale(0.1, 0.1, 1);
                         drawCone();
                     }
