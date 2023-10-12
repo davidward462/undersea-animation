@@ -371,7 +371,7 @@ gRotate(rotation[1], 0, 1, 0);
 //      pop()
 //  pop()
 
-function createSeaweedStrand(count, position, scale, offset, color, init)
+function createSeaweedStrand(count, position, rotate, scale, offset, color, init)
 {
     // base case
     if(count == 0)
@@ -407,7 +407,7 @@ function createSeaweedStrand(count, position, scale, offset, color, init)
     init = false;
 
     // do recursion
-    createSeaweedStrand(count-1, position, scale, offset, color, init);
+    createSeaweedStrand(count-1, position, rotate, scale, offset, color, init);
     gPop();
 }
 
@@ -493,7 +493,7 @@ function render(timestamp) {
 
                     // seaweed
                     gPush();
-                        createSeaweedStrand(5, seaweedPosition, seaweedScale, seaweedOffset, colorSeaweed, true); 
+                        createSeaweedStrand(5, seaweedPosition, seaweedRotation, seaweedScale, seaweedOffset, colorSeaweed, true); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
