@@ -595,10 +595,13 @@ function render(timestamp) {
     {
         // Diver
     gPush();
+        // calculate drift from timestamp
         drift = 0.6 * Math.cos( radians(timestamp) /25.0 );
         diverDrift[0] = drift;
         diverDrift[1] = drift;
         gTranslate(-2 + diverDrift[0], 2 + diverDrift[1], 0); // diver frame position
+
+        // static rotation
         gRotate(20, 0, 1, 0);
         
         gPush(); // Head
