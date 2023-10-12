@@ -360,29 +360,17 @@ rotation[1] = 30*Math.cos(radians(timestamp));
 gRotate(rotation[1], 0, 1, 0);
 **/
 
-function createSeaweedStrand(segmentCount, transform, color, scale, rotation)
-{
-    // base case
-    if (segmentCount == 0)
-    {
-        return;
-    }
+// structure
+//  push()
+//      createShape()
+//      push()
+//          createShape()
+//          push()
+//              createShape()
+//          pop()
+//      pop()
+//  pop()
 
-    // body
-    gPush();
-        gTranslate(transform[0], transform[1], transform[2]);
-        gPush();
-        {
-            setColor(color);
-            gScale(scale);
-            drawSphere();
-        }
-        gPop();
-
-        // recursion
-        createSeaweedStrand( (segmentCount - 1), transform, color, scale, rotation);
-    gPop();
-}
 
 function createCuboid(translate, scale, color )
 {
@@ -460,19 +448,8 @@ function render(timestamp) {
 
             if(decor)
             {
-                gPush(); // seaweed
-                    gTranslate(-1, 0.8, 0);
-                    createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
-                gPop(); // end seaweed
-
                 gPush(); // rock
                     createRock(rock1Position, rock1Scale, colorStone);
-
-                    gPush(); // seaweed
-                        gTranslate(0, 0.2, 0);
-                        createSeaweedStrand(10, [0, 0.5, 0], colorSeaweed, seaweedScale, seaweedRotation);
-                    gPop(); // end seaweed
-
                 gPop(); // end rock
                 
                 gPush(); // rock
