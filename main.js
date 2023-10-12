@@ -330,9 +330,9 @@ function gPush() {
 
 // Custom functions for assignment
 
-function createGround(transform, scale, color) {
+function createGround(translate, scale, color) {
 
-    gTranslate(transform[0], transform[1], transform[2]);
+    gTranslate(translate[0], translate[1], translate[2]);
     gPush();
     {
         setColor(color);
@@ -343,9 +343,9 @@ function createGround(transform, scale, color) {
 }
 
 // Create and draw rock
-function createRock(transform, scale, color) {
+function createRock(translate, scale, color) {
     
-    gTranslate(transform[0], transform[1], transform[2]);
+    gTranslate(translate[0], translate[1], translate[2]);
     gPush();
     {
         setColor(color);
@@ -354,11 +354,6 @@ function createRock(transform, scale, color) {
     }
     gPop();
 }
-
-/**
-rotation[1] = 30*Math.cos(radians(timestamp));
-gRotate(rotation[1], 0, 1, 0);
-**/
 
 // structure
 //  push()                  1st
@@ -411,28 +406,6 @@ function createSeaweedStrand(count, position, rotate, scale, offset, color, init
     gPop();
 }
 
-function createCuboid(translate, scale, color )
-{
-
-    gTranslate(translate[0], translate[1], translate[2]);
-
-    {
-        setColor(color);
-        gScale(scale[0], scale[1], scale[2]);
-        drawCube();
-    }
-}
-
-function createSpheroid(translate, scale, color)
-{
-    gTranslate(translate[0], translate[1], translate[2]);
-    {
-        setColor(color);
-        gScale(scale[0], scale[1], scale[2]);
-        drawSphere();
-    }
-}
-
 function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -456,10 +429,10 @@ function render(timestamp) {
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
 
     // conditional render
-    diver = false;
+    diver = true;
     ground = true;
     decor = true;
-    fish = false;
+    fish = true;
     
     // set all the matrices
     setAllMatrices();
