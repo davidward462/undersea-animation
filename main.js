@@ -492,9 +492,12 @@ function render(timestamp) {
             fishRotation[1] =  timestamp*0.05;
             gRotate(fishRotation[1], 0, 1, 0);
             gTranslate(-3, 0, 0); // position
+
+            // fish moves up and down
+            fishHeadPosition[1] = 0.3*Math.cos( radians(timestamp) / 10.0);
             
             gPush(); // head
-                gTranslate(0, 0, 0);
+                gTranslate(0, fishHeadPosition[1], 0);
                 gPush();
                 {
                     setColor(colorFishHead);
