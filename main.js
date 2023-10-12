@@ -126,9 +126,9 @@ var diverRightShinRotation = [0,0,0];
 var diverRightShinScale = diverShinScale;
 
 // seaweed
-var seaweedSize = 0.12;
-var seaweedOffset = 0.2;
-var seaweedPosition = [0,0,0];
+var seaweedSize = 0.15;
+var seaweedOffset = 0.6;
+var seaweedPosition = [1,2,0];
 var seaweedRotation = [0,1,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 
@@ -361,23 +361,54 @@ gRotate(rotation[1], 0, 1, 0);
 **/
 
 // structure
-//  push()
+//  push()                  1st
 //      createShape()
-//      push()
+//      push()              2nd 
 //          createShape()
-//          push()
+//          push()          3d
 //              createShape()
 //          pop()
 //      pop()
 //  pop()
 
-function createSeaweedStrand(count, position, scale, offset, color)
+function createSeaweedStrand(count, position, scale, offset, color, init)
 {
     // base case
     if(count == 0)
     {
         return;
     }
+
+    // initial segment
+    if(init)
+    {
+        // start position
+        gTranslate(position[0], position[1], position[2]);
+            gPush(); // for containing scale
+            {
+                setColor(color);
+                gScale(scale[0], scale[1], scale[2]);
+                drawSphere();
+            }
+            gPop(); // end scale
+    }
+    
+    gTranslate(0, offset, 0);
+    // body
+    gPush();
+        gPush();
+        {
+            setColor(color);
+            gScale(scale[0], scale[1], scale[2]);
+            drawSphere();
+        }
+        gPop();
+
+    init = false;
+
+    // do recursion
+    createSeaweedStrand(count-1, position, scale, offset, color, init);
+    gPop();
 }
 
 function createCuboid(translate, scale, color )
@@ -425,10 +456,10 @@ function render(timestamp) {
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
 
     // conditional render
-    diver = true;
+    diver = false;
     ground = true;
     decor = true;
-    fish = true;
+    fish = false;
     
     // set all the matrices
     setAllMatrices();
@@ -454,15 +485,17 @@ function render(timestamp) {
         gPush();
             createGround(groundPosition, groundScale, colorSand);
 
-            // seaweed
-            gPush();
-                createSeaweedStrand(0, seaweedPosition, seaweedScale, seaweedOffset, colorSeaweed); 
-            gPop(); // end seaweed
 
             if(decor)
             {
                 gPush(); // rock
                     createRock(rock1Position, rock1Scale, colorStone);
+
+                    // seaweed
+                    gPush();
+                        createSeaweedStrand(5, seaweedPosition, seaweedScale, seaweedOffset, colorSeaweed, true); 
+                    gPop(); // end seaweed
+
                 gPop(); // end rock
                 
                 gPush(); // rock
