@@ -88,6 +88,8 @@ var fishHeadRotation = [0,0,0];
 var fishHeadScale = [0.5, 0.5, -1];
 
 // Diver
+var diverPosition = [0, 0, 0];
+var diverDrift = [0, 0, 0];
 var diverZScale = 0.3
 var diverBodyPosition = [0,-1.4,0];
 var diverBodyRotation = [0,35,0];
@@ -593,7 +595,10 @@ function render(timestamp) {
     {
         // Diver
     gPush();
-        gTranslate(-2, 2, 0); // diver frame position
+        drift = 0.6 * Math.cos( radians(timestamp) /25.0 );
+        diverDrift[0] = drift;
+        diverDrift[1] = drift;
+        gTranslate(-2 + diverDrift[0], 2 + diverDrift[1], 0); // diver frame position
         
         gPush(); // Head
             gPush();
