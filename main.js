@@ -598,7 +598,7 @@ function render(timestamp) {
         gTranslate(-2 + diverDrift[0], 2 + diverDrift[1], 0); // diver frame position
 
         // static rotation
-        gRotate(20, 0, 1, 0);
+        //gRotate(20, 0, 1, 0);
         
         gPush(); // Head
             gPush();
@@ -621,6 +621,9 @@ function render(timestamp) {
                 gPop(); // end body scale
 
                 gPush(); // left leg
+                    gTranslate(0, 0, 0);
+                    diverLeftLegRotation[0] = 5*Math.cos( radians(timestamp) /10.0);
+                    gRotate(diverLeftLegRotation[0], 1, 0, 0);
                     gTranslate(-0.4, -1.5, 0);
                     {
                         setColor(colorDiverUpperLeg);
