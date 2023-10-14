@@ -432,8 +432,8 @@ function render(timestamp) {
     // conditional render
     diver = true;
     ground = true;
-    decor = true;
-    fish = true;
+    decor = false;
+    fish = false;
     
     // set all the matrices
     setAllMatrices();
@@ -600,7 +600,7 @@ function render(timestamp) {
         gTranslate(-2 + diverDrift[0], 2 + diverDrift[1], 0); // diver frame position
 
         // static rotation
-        //gRotate(20, 0, 1, 0);
+        gRotate(20, 0, 1, 0);
         
         gPush(); // Head
             gPush();
@@ -626,21 +626,30 @@ function render(timestamp) {
                     gTranslate(0, 0, 0);
                     diverLeftLegRotation[0] = 5*Math.cos( radians(timestamp) /10.0);
                     gRotate(diverLeftLegRotation[0], 1, 0, 0);
+
+                    gRotate(20, 1, 0, 0);
                     gTranslate(-0.4, -1.5, 0);
+
+                    gPush();
                     {
                         setColor(colorDiverUpperLeg);
                         gScale(diverLegScale);
                         drawCube();
                     }
+                    gPop();
 
                     gPush(); // lower leg
                         gTranslate(0, 0, 0);
                         diverLeftShinRotation[0] = 10*Math.cos( radians(timestamp) /10.0);
                         gRotate(diverLeftShinRotation[0], 1, 0, 0);
-                        gTranslate(0, -2, 0);
+
+                        gRotate(20, 1, 0, 0);
+
+                        gTranslate(0, -1, 0);
+
                         {
                             setColor(colorDiverLowerLeg);
-                            gScale(noScale);
+                            gScale(diverLegScale);
                             drawCube();
                         }
 
