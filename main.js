@@ -592,7 +592,8 @@ function render(timestamp) {
         // Diver
     gPush();
         // calculate drift from timestamp
-        drift = 0.6 * Math.cos( radians(timestamp) /25.0 );
+        //drift = 0.6 * Math.cos( radians(timestamp) /25.0 );
+        drift =  0; //  TODO: remove later
         diverDrift[0] = drift;
         diverDrift[1] = drift;
         gTranslate(-2 + diverDrift[0], 2 + diverDrift[1], 0); // diver frame position
@@ -632,6 +633,9 @@ function render(timestamp) {
                     }
 
                     gPush(); // lower leg
+                        gTranslate(0, 0, 0);
+                        diverLeftShinRotation[0] = 10*Math.cos( radians(timestamp) /10.0);
+                        gRotate(diverLeftShinRotation[0], 1, 0, 0);
                         gTranslate(0, -2, 0);
                         {
                             setColor(colorDiverLowerLeg);
