@@ -415,7 +415,7 @@ function render(timestamp) {
     side = vec3(10, 0, 0);
     obliqueRight = vec3(5, 5, 10);
     obliqueLeft = vec3(-5, 5, 10);
-    eyeList = [front, obliqueRight, side, obliqueLeft];
+    eyeList = [side ,obliqueRight, front, obliqueLeft];
     eye = eyeList[viewIndex];
 
     MS = []; // Initialize modeling matrix stack
@@ -590,7 +590,8 @@ function render(timestamp) {
 
     if(diver)
     {
-        // Diver
+    
+    // Diver
     gPush();
         // calculate drift from timestamp
         //drift = 0.6 * Math.cos( radians(timestamp) /25.0 );
@@ -600,7 +601,7 @@ function render(timestamp) {
         gTranslate(-2 + diverDrift[0], 2 + diverDrift[1], 0); // diver frame position
 
         // static rotation
-        gRotate(20, 0, 1, 0);
+        //gRotate(20, 0, 1, 0);
         
         gPush(); // Head
             gPush();
@@ -621,15 +622,22 @@ function render(timestamp) {
                         drawCube();
                     }
                 gPop(); // end body scale
+                
+                // translate to where center of leg is at rotation point
+                gTranslate(-0.4, -1, 0);
 
                 gPush(); // left leg
-                    gTranslate(0, 0, 0);
-                    diverLeftLegRotation[0] = 5*Math.cos( radians(timestamp) /10.0);
+                    //gTranslate(0, -0.5, 0);
+                    //diverLeftLegRotation[0] = 5*Math.cos( radians(timestamp) /10.0);
+                    
+                    // rotate
+                    //diverLeftLegRotation[0] = 0.2*timestamp;
                     gRotate(diverLeftLegRotation[0], 1, 0, 0);
 
-                    gRotate(20, 1, 0, 0);
-                    gTranslate(-0.4, -1.5, 0);
+                    //gRotate(20, 1, 0, 0);
 
+                    // translate so joint was where center had been rotating
+                    gTranslate(0, -0.5, 0);
                     gPush();
                     {
                         setColor(colorDiverUpperLeg);
@@ -638,15 +646,13 @@ function render(timestamp) {
                     }
                     gPop();
 
+                    gTranslate(0, -0.5, 0);
                     gPush(); // lower leg
-                        gTranslate(0, 0, 0);
-                        diverLeftShinRotation[0] = 10*Math.cos( radians(timestamp) /10.0);
+
+                        // rotate
+                        diverLeftShinRotation[0] = 0.2*timestamp;
                         gRotate(diverLeftShinRotation[0], 1, 0, 0);
-
-                        gRotate(20, 1, 0, 0);
-
-                        gTranslate(0, -1, 0);
-
+                        gTranslate(0, -0.5, 0);
                         {
                             setColor(colorDiverLowerLeg);
                             gScale(diverLegScale);
@@ -671,7 +677,7 @@ function render(timestamp) {
                     {
                         setColor(colorDiverUpperLeg);
                         gScale(diverLegScale);
-                        drawCube();
+                        //drawCube();
                     }
 
                     gPush(); // lower leg
@@ -679,7 +685,7 @@ function render(timestamp) {
                         {
                             setColor(colorDiverLowerLeg);
                             gScale(noScale);
-                            drawCube();
+                            //drawCube();
                         }
 
                         gPush(); // foot
@@ -687,7 +693,7 @@ function render(timestamp) {
                             {
                                 setColor(colorDiverFoot);
                                 gScale(1.2, 0.3, 1.7);
-                                drawCube();
+                               //drawCube();
                             }
                         gPop(); // end foot
 
