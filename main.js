@@ -672,20 +672,40 @@ function render(timestamp) {
 
                 gPop(); // end left leg
 
+
+                // move over to where right leg will be
+                gTranslate(0.8, 0, 0);
                 gPush(); // right leg
-                    gTranslate(0.4, -1.5, 0);
+                                      
+                    // rotate
+                    diverRightLegRotation[0] = 5*Math.sin( radians(timestamp) /10.0);
+                    gRotate(diverRightLegRotation[0], 1, 0, 0);
+                    gRotate(20, 1, 0, 0);
+
+                    // translate so joint was where center had been rotating
+                    gTranslate(0, -0.5, 0);
+                    gPush();
                     {
                         setColor(colorDiverUpperLeg);
                         gScale(diverLegScale);
-                        //drawCube();
+                        drawCube();
                     }
+                    gPop();
 
+                    gTranslate(0, -0.5, 0);
                     gPush(); // lower leg
-                        gTranslate(0, -2, 0);
+
+                        // rotate
+                        diverRightShinRotation[0] = 5*Math.sin( radians(timestamp) /10.0);
+                        gRotate(diverRightShinRotation[0], 1, 0, 0);
+                        gRotate(45, 1, 0, 0);
+
+                        // translate so joint was where center had been rotating
+                        gTranslate(0, -0.5, 0);
                         {
                             setColor(colorDiverLowerLeg);
-                            gScale(noScale);
-                            //drawCube();
+                            gScale(diverLegScale);
+                            drawCube();
                         }
 
                         gPush(); // foot
@@ -693,10 +713,9 @@ function render(timestamp) {
                             {
                                 setColor(colorDiverFoot);
                                 gScale(1.2, 0.3, 1.7);
-                               //drawCube();
+                                drawCube();
                             }
                         gPop(); // end foot
-
 
                     gPop(); // end lower leg
 
