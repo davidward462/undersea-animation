@@ -147,14 +147,16 @@ var fishStaticRotation = [];
 var fishBodyPosition = [0, 0, -1.25];
 var fishBodyScale = [fishXScale, 0.5, 2];
 var topFinPosition = [0, 0.25, 1.2];
+var bottomFinPosition = [0, -0.25, 1.2];
 var topFinRotation = [];
-var finScale = [];
+var bottomFinRotation = [];
+var finScale = [0.1, 0.1, 1];
 var diverStaticRotation = [];
 var diverPosition = [];
 var upperLegStaticRotation = [];
 var lowerLegStaticRotation = [];
-var footPosition = [];
-var footScale = [];
+var footPosition = [-0.1, -1, 0.5];
+var footScale = [1.2, 0.3, 1.7];
  
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -582,17 +584,17 @@ function render(timestamp) {
                             gRotate(-30, 1, 0, 0);
                             {
                                 setColor(colorFishTail);
-                                gScale(0.1, 0.1, 1);
+                                gScale(finScale[0], finScale[1], finScale[2]);
                                 drawCone();
                             }
                         gPop(); // end top fin
 
                         gPush(); // bottom fin
-                            gTranslate(0, -0.25, 1.2);
+                            gTranslate(bottomFinPosition[0], bottomFinPosition[1], bottomFinPosition[2]);
                             gRotate(30, 1, 0, 0);
                             {
                                 setColor(colorFishTail);
-                                gScale(0.1, 0.1, 1);
+                                gScale(finScale[0], finScale[1], finScale[2]);
                                 drawCone();
                             }
                         gPop(); // end bottom fin
@@ -636,7 +638,7 @@ function render(timestamp) {
                 gPush(); // body scale
                     {
                         setColor(colorDiverBody);
-                        gScale(diverBodyScale);
+                        gScale(diverBodyScale[0], diverBodyScale[1], diverBodyScale[2]);
                         drawCube();
                     }
                 gPop(); // end body scale
@@ -656,7 +658,7 @@ function render(timestamp) {
                     gPush();
                     {
                         setColor(colorDiverUpperLeg);
-                        gScale(diverLegScale);
+                        gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
                         drawCube();
                     }
                     gPop();
@@ -673,15 +675,15 @@ function render(timestamp) {
                         gTranslate(0, -0.5, 0);
                         {
                             setColor(colorDiverLowerLeg);
-                            gScale(diverLegScale);
+                            gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
                             drawCube();
                         }
 
                         gPush(); // foot
-                            gTranslate(0, -1.3, 0.7);
+                            gTranslate(footPosition[0], footPosition[1], footPosition[2]);
                             {
                                 setColor(colorDiverFoot);
-                                gScale(1.2, 0.3, 1.7);
+                                gScale(footScale[0], footScale[1], footScale[2]);
                                 drawCube();
                             }
                         gPop(); // end foot
@@ -705,7 +707,7 @@ function render(timestamp) {
                     gPush();
                     {
                         setColor(colorDiverUpperLeg);
-                        gScale(diverLegScale);
+                        gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
                         drawCube();
                     }
                     gPop();
@@ -722,15 +724,15 @@ function render(timestamp) {
                         gTranslate(0, -0.5, 0);
                         {
                             setColor(colorDiverLowerLeg);
-                            gScale(diverLegScale);
+                            gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
                             drawCube();
                         }
 
                         gPush(); // foot
-                            gTranslate(0, -1.3, 0.7);
+                            gTranslate(footPosition[0], footPosition[1], footPosition[2]);
                             {
                                 setColor(colorDiverFoot);
-                                gScale(1.2, 0.3, 1.7);
+                                gScale(footScale[0], footScale[1], footScale[2]);
                                 drawCube();
                             }
                         gPop(); // end foot
