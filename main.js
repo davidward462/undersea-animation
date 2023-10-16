@@ -168,23 +168,12 @@ var zAxis = [0, 0, 1];
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
 var colorBlack = vec4(0.0, 0.0, 0.0, 1.0);
-var colorBattleshipGrey = vec4(0.5, 0.54, 0.53, 1.0);
-var colorViolet = vec4(0.5, 0.0, 1.0, 1.0);
-var colorYaleBlue = vec4(0.07, 0.38, 0.5, 1.0);
-var colorRed = vec4(1.0, 0.2, 0.33);
-var colorSeaGreen = vec4(0.18, 0.55, 0.34, 1.0);
-var colorCorn = vec4(1.0, 0.9, 0.4, 1.0);
 var colorPastelPink = vec4(1.0, 0.8, 0.84, 1.0);
-
-var colorSand = colorCorn;
-var colorStone = colorBattleshipGrey;
-var colorSeaweed = colorSeaGreen;
-
-var colorDiver = colorViolet;
-
-var colorFishHead = colorPastelPink;
-var colorFishBody = colorRed;
-var colorFishTail = colorRed;
+var colorSand = vec4(1.0, 0.9, 0.4, 1.0);
+var colorStone = vec4(0.5, 0.54, 0.53, 1.0);
+var colorSeaweed = vec4(0.18, 0.55, 0.34, 1.0);
+var colorDiver = vec4(0.5, 0.0, 1.0, 1.0);
+var colorFish = vec4(1.0, 0.2, 0.33);
 
 // Setting the colour which is needed during illumination of a surface
 function setColor(c)
@@ -544,7 +533,7 @@ function render(timestamp) {
                 gTranslate(0, fishHeadPosition[1], 0);
                 gPush();
                 {
-                    setColor(colorFishHead);
+                    setColor(colorFish);
                     gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
                     drawCone();
                 }
@@ -552,12 +541,7 @@ function render(timestamp) {
 
                 gPush(); // left eye
 
-                    gTranslate(leftEyePosition[0], leftEyePosition[1], leftEyePosition[2]); // origin
-                    {
-                        setColor(colorWhite);
-                        gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
-                        drawSphere();
-                    }
+                    staticDraw("sphere", leftEyePosition, 0, xAxis, eyeScale, colorWhite);
                     
                     gPush();
                         staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
@@ -580,7 +564,7 @@ function render(timestamp) {
                     gRotate(180, 0, 1, 0);
 
                     gPush();
-                        staticDraw("cone", zeroVector, 0, yAxis, fishBodyScale, colorFishBody);
+                        staticDraw("cone", zeroVector, 0, yAxis, fishBodyScale, colorFish);
                     gPop();
 
                     gPush(); // tail rotation
@@ -588,11 +572,11 @@ function render(timestamp) {
                         gRotate(tailRotation[1], 0, 1, 0);
 
                         gPush();
-                            staticDraw("cone", topFinPosition, -30, xAxis, finScale, colorFishTail);
+                            staticDraw("cone", topFinPosition, -30, xAxis, finScale, colorFish);
                         gPop();
                         
                         gPush();
-                            staticDraw("cone", bottomFinPosition, 30, xAxis, finScale, colorFishTail);
+                            staticDraw("cone", bottomFinPosition, 30, xAxis, finScale, colorFish);
                         gPop();
 
                     gPop(); // end tail rotation
