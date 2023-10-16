@@ -81,7 +81,7 @@ var fishXScale = 0.3;
 // Fish body
 var fishBodyPosition = [-2,0,0];
 var fishBodyRotation = [0,90,0];
-var fishBodyScale = [fishXScale, 0.5, 2];
+//var fishBodyScale = [fishXScale, 0.5, 2];
 
 // Fish head
 var fishHeadPosition = [0,0,-1.5];
@@ -144,8 +144,9 @@ var eyeScale = [0.2, 0.2, 0.2];
 var pupilPosition = [0, 0, 0.8];
 var pupilScale = [0.5, 0.5, 0.5];
 var fishStaticRotation = [];
-var fishBodyPosition = [];
-var topFinPosition = [];
+var fishBodyPosition = [0, 0, -1.25];
+var fishBodyScale = [fishXScale, 0.5, 2];
+var topFinPosition = [0, 0.25, 1.2];
 var topFinRotation = [];
 var finScale = [];
 var diverStaticRotation = [];
@@ -531,14 +532,14 @@ function render(timestamp) {
                         gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
                         drawSphere();
                     }
-                        gPush(); // // pupil
+                        gPush(); // pupil
                             gTranslate(pupilPosition[0], pupilPosition[1], pupilPosition[2]);
                             {
                                 setColor(colorBlack);
                                 gScale(pupilScale[0], pupilScale[1], pupilScale[2]);
                                 drawSphere();
                             }
-                        gPop(); // end // pupil
+                        gPop(); // end pupil
 
                 gPop(); // end left eye
 
@@ -550,24 +551,24 @@ function render(timestamp) {
                         gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
                         drawSphere();
                     }
-                    gPush(); // // pupil
+                    gPush(); // pupil
                         gTranslate(pupilPosition[0], pupilPosition[1], pupilPosition[2]);
                         {
                             setColor(colorBlack);
                             gScale(pupilScale[0], pupilScale[1], pupilScale[2]);
                             drawSphere();
                         }
-                    gPop(); // end // pupil
+                    gPop();// end pupil
 
                 gPop(); // end right eye
 
                 gPush(); //body
-                    gTranslate(0, 0, -1.25);
+                    gTranslate(fishBodyPosition[0], fishBodyPosition[1], fishBodyPosition[2]);
                     gRotate(180, 0, 1, 0);
                     gPush();
                         {
                             setColor(colorFishBody);
-                            gScale(fishXScale, 0.5, 2);
+                            gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
                             drawCone();
                         }
                     gPop();
@@ -577,7 +578,7 @@ function render(timestamp) {
                         gRotate(tailRotation[1], 0, 1, 0);
 
                         gPush(); // top fin
-                            gTranslate(0, 0.25, 1.2);
+                            gTranslate(topFinPosition[0], topFinPosition[1], topFinPosition[2]);
                             gRotate(-30, 1, 0, 0);
                             {
                                 setColor(colorFishTail);
