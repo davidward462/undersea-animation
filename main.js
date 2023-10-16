@@ -56,8 +56,10 @@ var viewCount = 4;
 
 // Object states
 
-var origin = [0,0,0];
-var noRotation = [0,0,0];
+var zeroVector = [0, 0, 0];
+var origin = zeroVector;
+var noRotation = zeroVector;
+var noScale = [1, 1, 1];
 
 // Ground
 var groundPosition = [0,-5,0];
@@ -133,7 +135,7 @@ var seaweedPosition = [1,2,0];
 var seaweedRotation = [0,0,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 
-var noScale = [1, 1, 1];
+
 
 var fishOrigin = [0, -3, 0];
 var fishPosition = [-3, 0, 0];
@@ -157,6 +159,11 @@ var upperLegStaticRotation = [];
 var lowerLegStaticRotation = [];
 var footPosition = [-0.1, -1, 0.5];
 var footScale = [1.2, 0.3, 1.7];
+
+var xAxis = [1, 0, 0];
+var yAxis = [0, 1, 0];
+var zAxis = [0, 0, 1];
+
  
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -423,11 +430,11 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, 
     gPop();
 }
 
-function staticDraw(shape, translate, rotate, scale, color)
+function staticDraw(shape, translate, rotate, rotateAxis, scale, color)
 {
-    gTranslate(translate[0], translate[1], translate[2]);
-    gRotate(rotate, 1, 0, 0);
     gPush(); // body scale
+        gTranslate(translate[0], translate[1], translate[2]);
+        gRotate(rotate, rotateAxis[0], rotateAxis[1], rotateAxis[2]);
         {
             setColor(color);
             gScale(scale[0], scale[1], scale[2]);
@@ -435,7 +442,7 @@ function staticDraw(shape, translate, rotate, scale, color)
             {
                 drawCone();
             }
-            else if(shape=="cone")
+            else if(shape=="sphere")
             {
                 drawSphere();
             }
@@ -559,14 +566,8 @@ function render(timestamp) {
                         gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
                         drawSphere();
                     }
-                        gPush(); // pupil
-                            gTranslate(pupilPosition[0], pupilPosition[1], pupilPosition[2]);
-                            {
-                                setColor(colorBlack);
-                                gScale(pupilScale[0], pupilScale[1], pupilScale[2]);
-                                drawSphere();
-                            }
-                        gPop(); // end pupil
+                    
+                    staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
 
                 gPop(); // end left eye
 
@@ -578,51 +579,24 @@ function render(timestamp) {
                         gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
                         drawSphere();
                     }
-                    gPush(); // pupil
-                        gTranslate(pupilPosition[0], pupilPosition[1], pupilPosition[2]);
-                        {
-                            setColor(colorBlack);
-                            gScale(pupilScale[0], pupilScale[1], pupilScale[2]);
-                            drawSphere();
-                        }
-                    gPop();// end pupil
+
+                    staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
 
                 gPop(); // end right eye
 
                 gPush(); //body
                     gTranslate(fishBodyPosition[0], fishBodyPosition[1], fishBodyPosition[2]);
                     gRotate(180, 0, 1, 0);
-                    gPush();
-                        {
-                            setColor(colorFishBody);
-                            gScale(fishBodyScale[0], fishBodyScale[1], fishBodyScale[2]);
-                            drawCone();
-                        }
-                    gPop();
+                    staticDraw("cone", zeroVector, 0, yAxis, fishBodyScale, colorFishBody);
+                    
 
                     gPush(); // tail rotation
                         tailRotation[1] = tailRotation[1] + 1.0*Math.cos( radians(timestamp) /3.0 );
                         gRotate(tailRotation[1], 0, 1, 0);
 
-                        gPush(); // top fin
-                            gTranslate(topFinPosition[0], topFinPosition[1], topFinPosition[2]);
-                            gRotate(-30, 1, 0, 0);
-                            {
-                                setColor(colorFishTail);
-                                gScale(finScale[0], finScale[1], finScale[2]);
-                                drawCone();
-                            }
-                        gPop(); // end top fin
-
-                        gPush(); // bottom fin
-                            gTranslate(bottomFinPosition[0], bottomFinPosition[1], bottomFinPosition[2]);
-                            gRotate(30, 1, 0, 0);
-                            {
-                                setColor(colorFishTail);
-                                gScale(finScale[0], finScale[1], finScale[2]);
-                                drawCone();
-                            }
-                        gPop(); // end bottom fin
+                        staticDraw("cone", topFinPosition, -30, xAxis, finScale, colorFishTail);
+                        
+                        staticDraw("cone", bottomFinPosition, 30, xAxis, finScale, colorFishTail);
 
                     gPop(); // end tail rotation
 
@@ -705,12 +679,7 @@ function render(timestamp) {
                         }
 
                         gPush(); // foot
-                            gTranslate(footPosition[0], footPosition[1], footPosition[2]);
-                            {
-                                setColor(colorDiverFoot);
-                                gScale(footScale[0], footScale[1], footScale[2]);
-                                drawCube();
-                            }
+                            staticDraw("cube", footPosition, 0, xAxis, footScale, colorDiverFoot);
                         gPop(); // end foot
 
                     gPop(); // end lower leg
@@ -754,12 +723,7 @@ function render(timestamp) {
                         }
 
                         gPush(); // foot
-                            gTranslate(footPosition[0], footPosition[1], footPosition[2]);
-                            {
-                                setColor(colorDiverFoot);
-                                gScale(footScale[0], footScale[1], footScale[2]);
-                                drawCube();
-                            }
+                            staticDraw("cube", footPosition, 0, xAxis, footScale, colorDiverFoot);
                         gPop(); // end foot
 
                     gPop(); // end lower leg
