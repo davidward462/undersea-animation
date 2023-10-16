@@ -135,7 +135,7 @@ var seaweedPosition = [1,2,0];
 var seaweedRotation = [0,0,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 
-
+var seaweedSegmentCount = 10;
 
 var fishOrigin = [0, -3, 0];
 var fishPosition = [-3, 0, 0];
@@ -154,7 +154,7 @@ var topFinRotation = [];
 var bottomFinRotation = [];
 var finScale = [0.1, 0.1, 1];
 var diverStaticRotation = [];
-var diverPosition = [-2, 2, 0];
+var diverPosition = [-2, 2, -1];
 var upperLegStaticRotation = [];
 var lowerLegStaticRotation = [];
 var footPosition = [-0.1, -1, 0.5];
@@ -392,7 +392,8 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, 
     gTranslate(position[0], position[1], position[2]);
     gPush();
     
-        rotate[2] = 10*Math.cos( radians(ts) /10.0);
+        let phase = count*100;
+        rotate[2] = 5*Math.cos( radians(ts) /30.0 + phase );
         gRotate(rotate[2], 0, 0, 1);
 
         // translate so joint was where center had been rotating
@@ -488,6 +489,12 @@ function render(timestamp) {
         gPush();
             createGround(groundPosition, groundScale, colorSand);
 
+            // seaweed
+            gPush();
+                gTranslate(-2, 1, 0);
+                createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
+            gPop(); // end seaweed
+
             if(decor)
             {
                 gPush(); // rock
@@ -495,7 +502,7 @@ function render(timestamp) {
 
                     // seaweed
                     gPush();
-                        createSeaweedStrand(timestamp, 5, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
+                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
@@ -505,7 +512,7 @@ function render(timestamp) {
 
                     // seaweed
                     gPush();
-                        createSeaweedStrand(timestamp, 5, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
+                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
