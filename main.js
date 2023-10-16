@@ -452,7 +452,6 @@ function render(timestamp) {
         gPush();
             createGround(groundPosition, groundScale, colorSand);
 
-
             if(decor)
             {
                 gPush(); // rock
@@ -467,6 +466,12 @@ function render(timestamp) {
                 
                 gPush(); // rock
                     createRock(rock2Position, rock2Scale, colorStone);
+
+                    // seaweed
+                    gPush();
+                        createSeaweedStrand(timestamp, 5, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
+                    gPop(); // end seaweed
+
                 gPop(); // end rock
             }
 
