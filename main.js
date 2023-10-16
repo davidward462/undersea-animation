@@ -423,6 +423,30 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, 
     gPop();
 }
 
+function staticDraw(shape, position, color, scale)
+{
+    gTranslate(position[0], position[1], position[2]);
+        gPush(); // body scale
+            {
+                setColor(color);
+                gScale(scale[0], scale[1], scale[2]);
+                if(shape=="cone")
+                {
+                    drawCone();
+                }
+                else if(shape=="cone")
+                {
+                    drawSphere();
+                }
+                else
+                {
+                    drawCube();
+                }
+                
+            }
+        gPop(); // end body scale
+}
+
 function render(timestamp) {
     
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
