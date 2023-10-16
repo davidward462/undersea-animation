@@ -625,7 +625,7 @@ function render(timestamp) {
                 gPush(); // left leg
                                       
                     // rotate
-                    diverLeftLegRotation[0] = 5*Math.cos( radians(timestamp) /10.0);
+                    diverLeftLegRotation[0] = 10*Math.cos( radians(timestamp) /10.0);
                     gRotate(diverLeftLegRotation[0], 1, 0, 0);
                     gRotate(20, 1, 0, 0);
 
@@ -643,7 +643,7 @@ function render(timestamp) {
                     gPush(); // lower leg
 
                         // rotate
-                        diverLeftShinRotation[0] = 5*Math.cos( radians(timestamp) /10.0);
+                        diverLeftShinRotation[0] = 10*Math.cos( radians(timestamp) /10.0);
                         gRotate(diverLeftShinRotation[0], 1, 0, 0);
                         gRotate(45, 1, 0, 0);
 
