@@ -181,11 +181,6 @@ var colorStone = colorBattleshipGrey;
 var colorSeaweed = colorSeaGreen;
 
 var colorDiver = colorViolet;
-var colorDiverHead = colorViolet;
-var colorDiverBody = colorViolet;
-var colorDiverUpperLeg = colorViolet;
-var colorDiverLowerLeg = colorViolet;
-var colorDiverFoot = colorViolet;
 
 var colorFishHead = colorPastelPink;
 var colorFishBody = colorRed;
@@ -572,12 +567,7 @@ function render(timestamp) {
 
                 gPush(); // right eye
 
-                    gTranslate(rightEyePosition[0], rightEyePosition[1], rightEyePosition[2]); // origin
-                    {
-                        setColor(colorWhite);
-                        gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
-                        drawSphere();
-                    }
+                    staticDraw("sphere", rightEyePosition, 0, xAxis, eyeScale, colorWhite);
                     
                     gPush();
                         staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
@@ -590,7 +580,7 @@ function render(timestamp) {
                     gRotate(180, 0, 1, 0);
 
                     gPush();
-                    staticDraw("cone", zeroVector, 0, yAxis, fishBodyScale, colorFishBody);
+                        staticDraw("cone", zeroVector, 0, yAxis, fishBodyScale, colorFishBody);
                     gPop();
 
                     gPush(); // tail rotation
@@ -631,11 +621,7 @@ function render(timestamp) {
         
         gPush(); // Head
             gPush();
-                {
-                    setColor(colorDiverHead);
-                    gScale(diverHeadScale[0], diverHeadScale[1], diverHeadScale[2]);
-                    drawSphere();
-                }
+                staticDraw("sphere", zeroVector, 0, xAxis, diverHeadScale, colorDiver);
             gPop();
             
             gPush(); // Body
@@ -643,7 +629,7 @@ function render(timestamp) {
                 gTranslate(diverBodyPosition[0], diverBodyPosition[1], diverBodyPosition[2]);
                 gPush(); // body scale
                     {
-                        setColor(colorDiverBody);
+                        setColor(colorDiver);
                         gScale(diverBodyScale[0], diverBodyScale[1], diverBodyScale[2]);
                         drawCube();
                     }
@@ -663,7 +649,7 @@ function render(timestamp) {
                     gTranslate(0, -0.5, 0);
                     gPush();
                     {
-                        setColor(colorDiverUpperLeg);
+                        setColor(colorDiver);
                         gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
                         drawCube();
                     }
@@ -680,13 +666,13 @@ function render(timestamp) {
                         // translate so joint was where center had been rotating
                         gTranslate(0, -0.5, 0);
                         {
-                            setColor(colorDiverLowerLeg);
+                            setColor(colorDiver);
                             gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
                             drawCube();
                         }
 
                         gPush(); // foot
-                            staticDraw("cube", footPosition, 0, xAxis, footScale, colorDiverFoot);
+                            staticDraw("cube", footPosition, 0, xAxis, footScale, colorDiver);
                         gPop(); // end foot
 
                     gPop(); // end lower leg
@@ -707,7 +693,7 @@ function render(timestamp) {
                     gTranslate(0, -0.5, 0);
                     gPush();
                     {
-                        setColor(colorDiverUpperLeg);
+                        setColor(colorDiver);
                         gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
                         drawCube();
                     }
@@ -722,15 +708,11 @@ function render(timestamp) {
                         gRotate(45, 1, 0, 0);
 
                         // translate so joint was where center had been rotating
-                        gTranslate(0, -0.5, 0);
-                        {
-                            setColor(colorDiverLowerLeg);
-                            gScale(diverLegScale[0], diverLegScale[1], diverLegScale[2]);
-                            drawCube();
-                        }
+                       
+                        staticDraw("cube", [0, -0.5, 0], 0, xAxis, diverLegScale, colorDiver);
 
                         gPush(); // foot
-                            staticDraw("cube", footPosition, 0, xAxis, footScale, colorDiverFoot);
+                            staticDraw("cube", footPosition, 0, xAxis, footScale, colorDiver);
                         gPop(); // end foot
 
                     gPop(); // end lower leg
