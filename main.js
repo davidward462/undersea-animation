@@ -423,28 +423,29 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, 
     gPop();
 }
 
-function staticDraw(shape, position, color, scale)
+function staticDraw(shape, translate, rotate, scale, color)
 {
-    gTranslate(position[0], position[1], position[2]);
-        gPush(); // body scale
+    gTranslate(translate[0], translate[1], translate[2]);
+    gRotate(rotate, 1, 0, 0);
+    gPush(); // body scale
+        {
+            setColor(color);
+            gScale(scale[0], scale[1], scale[2]);
+            if(shape=="cone")
             {
-                setColor(color);
-                gScale(scale[0], scale[1], scale[2]);
-                if(shape=="cone")
-                {
-                    drawCone();
-                }
-                else if(shape=="cone")
-                {
-                    drawSphere();
-                }
-                else
-                {
-                    drawCube();
-                }
-                
+                drawCone();
             }
-        gPop(); // end body scale
+            else if(shape=="cone")
+            {
+                drawSphere();
+            }
+            else
+            {
+                drawCube();
+            }
+            
+        }
+    gPop(); // end body scale
 }
 
 function render(timestamp) {
