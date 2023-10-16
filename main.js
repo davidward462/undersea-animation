@@ -134,6 +134,26 @@ var seaweedRotation = [0,0,0];
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 
 var noScale = [1, 1, 1];
+
+var fishOrigin = [0, -3, 0];
+var fishPosition = [-3, 0, 0];
+var fishHeadScale = [fishXScale, 0.5, 0.5];
+var leftEyePosition = [0.3, 0.3, 0];
+var rightEyePosition = [];
+var eyeScale = [0.2, 0.2, 0.2];
+var pupilPosition = [];
+var pupilScale = [];
+var fishStaticRotation = [];
+var fishBodyPosition = [];
+var topFinPosition = [];
+var topFinRotation = [];
+var finScale = [];
+var diverStaticRotation = [];
+var diverPosition = [];
+var upperLegStaticRotation = [];
+var lowerLegStaticRotation = [];
+var footPosition = [];
+var footScale = [];
  
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
@@ -485,10 +505,10 @@ function render(timestamp) {
         gPush();
 
             // Rotate around the origin
-            gTranslate(0, -3, 0); // origin
-            fishRotation[1] =  timestamp*0.05;
+            gTranslate(fishOrigin[0], fishOrigin[1], fishOrigin[2]); // origin
+            fishRotation[1] = 0.05 * timestamp;
             gRotate(fishRotation[1], 0, 1, 0);
-            gTranslate(-3, 0, 0); // position
+            gTranslate(fishPosition[0], fishPosition[1], fishPosition[2]); // position
 
             // fish moves up and down
             fishHeadPosition[1] = 0.3*Math.cos( radians(timestamp) / 10.0);
@@ -498,17 +518,17 @@ function render(timestamp) {
                 gPush();
                 {
                     setColor(colorFishHead);
-                    gScale(fishXScale, 0.5, 0.5);
+                    gScale(fishHeadScale[0], fishHeadScale[1], fishHeadScale[2]);
                     drawCone();
                 }
                 gPop();
 
                 gPush(); // left eye
 
-                    gTranslate(0.3, 0.3, 0);
+                    gTranslate(leftEyePosition[0], leftEyePosition[1], leftEyePosition[2]); // origin
                     {
                         setColor(colorWhite);
-                        gScale(0.2, 0.2, 0.2);
+                        gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
                         drawSphere();
                     }
                         gPush(); // // pupil
