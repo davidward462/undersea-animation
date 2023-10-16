@@ -432,7 +432,6 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, 
 
 function staticDraw(shape, translate, rotate, rotateAxis, scale, color)
 {
-    gPush(); // body scale
         gTranslate(translate[0], translate[1], translate[2]);
         gRotate(rotate, rotateAxis[0], rotateAxis[1], rotateAxis[2]);
         {
@@ -450,9 +449,7 @@ function staticDraw(shape, translate, rotate, rotateAxis, scale, color)
             {
                 drawCube();
             }
-            
         }
-    gPop(); // end body scale
 }
 
 function render(timestamp) {
@@ -567,7 +564,9 @@ function render(timestamp) {
                         drawSphere();
                     }
                     
-                    staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
+                    gPush();
+                        staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
+                    gPop();
 
                 gPop(); // end left eye
 
@@ -579,24 +578,32 @@ function render(timestamp) {
                         gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
                         drawSphere();
                     }
-
-                    staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
+                    
+                    gPush();
+                        staticDraw("sphere", pupilPosition, 0, xAxis, pupilScale, colorBlack);
+                    gPop();
 
                 gPop(); // end right eye
 
                 gPush(); //body
                     gTranslate(fishBodyPosition[0], fishBodyPosition[1], fishBodyPosition[2]);
                     gRotate(180, 0, 1, 0);
+
+                    gPush();
                     staticDraw("cone", zeroVector, 0, yAxis, fishBodyScale, colorFishBody);
-                    
+                    gPop();
 
                     gPush(); // tail rotation
                         tailRotation[1] = tailRotation[1] + 1.0*Math.cos( radians(timestamp) /3.0 );
                         gRotate(tailRotation[1], 0, 1, 0);
 
-                        staticDraw("cone", topFinPosition, -30, xAxis, finScale, colorFishTail);
+                        gPush();
+                            staticDraw("cone", topFinPosition, -30, xAxis, finScale, colorFishTail);
+                        gPop();
                         
-                        staticDraw("cone", bottomFinPosition, 30, xAxis, finScale, colorFishTail);
+                        gPush();
+                            staticDraw("cone", bottomFinPosition, 30, xAxis, finScale, colorFishTail);
+                        gPop();
 
                     gPop(); // end tail rotation
 
