@@ -130,7 +130,7 @@ var diverRightShinScale = diverShinScale;
 var seaweedSize = 0.15;
 var seaweedOffset = 0.6;
 var seaweedPosition = [1,2,0];
-var seaweedRotation = [0,1,0]; 
+var seaweedRotation = [0,0,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 
 var noScale = [1, 1, 1];
@@ -367,7 +367,7 @@ function createRock(translate, scale, color) {
 //      pop()
 //  pop()
 
-function createSeaweedStrand(count, position, rotate, scale, offset, color, init)
+function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, init)
 {
     // base case
     if(count == 0)
@@ -375,23 +375,16 @@ function createSeaweedStrand(count, position, rotate, scale, offset, color, init
         return;
     }
 
-    // initial segment
-    if(init)
-    {
-        // start position
-        gTranslate(position[0], position[1], position[2]);
-            gPush(); // for containing scale
-            {
-                setColor(color);
-                gScale(scale[0], scale[1], scale[2]);
-                drawSphere();
-            }
-            gPop(); // end scale
-    }
-    
-    gTranslate(0, offset, 0);
-    // body
+    gTranslate(position[0], position[1], position[2]);
     gPush();
+    
+        rotate[2] = 10*Math.cos( radians(ts) /10.0);
+        gRotate(rotate[2], 0, 0, 1);
+
+        // translate so joint was where center had been rotating
+        //gTranslate(0, offset, 0);
+
+        // body
         gPush();
         {
             setColor(color);
@@ -400,10 +393,10 @@ function createSeaweedStrand(count, position, rotate, scale, offset, color, init
         }
         gPop();
 
-    init = false;
+        init = false;
 
-    // do recursion
-    createSeaweedStrand(count-1, position, rotate, scale, offset, color, init);
+        // do recursion
+        createSeaweedStrand(ts, count-1, position, rotate, scale, offset, color, init);
     gPop();
 }
 
@@ -415,7 +408,7 @@ function render(timestamp) {
     side = vec3(10, 0, 0);
     obliqueRight = vec3(5, 5, 10);
     obliqueLeft = vec3(-5, 5, 10);
-    eyeList = [side ,obliqueRight, front, obliqueLeft];
+    eyeList = [front ,obliqueRight, side, obliqueLeft];
     eye = eyeList[viewIndex];
 
     MS = []; // Initialize modeling matrix stack
@@ -430,9 +423,9 @@ function render(timestamp) {
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
 
     // conditional render
-    diver = true;
+    diver = false;
     ground = true;
-    decor = false;
+    decor = true;
     fish = false;
     
     // set all the matrices
@@ -467,7 +460,7 @@ function render(timestamp) {
 
                     // seaweed
                     gPush();
-                        createSeaweedStrand(5, seaweedPosition, seaweedRotation, seaweedScale, seaweedOffset, colorSeaweed, true); 
+                        createSeaweedStrand(timestamp, 5, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
