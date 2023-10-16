@@ -139,10 +139,10 @@ var fishOrigin = [0, -3, 0];
 var fishPosition = [-3, 0, 0];
 var fishHeadScale = [fishXScale, 0.5, 0.5];
 var leftEyePosition = [0.3, 0.3, 0];
-var rightEyePosition = [];
+var rightEyePosition = [-0.3, 0.3, 0];
 var eyeScale = [0.2, 0.2, 0.2];
-var pupilPosition = [];
-var pupilScale = [];
+var pupilPosition = [0, 0, 0.8];
+var pupilScale = [0.5, 0.5, 0.5];
 var fishStaticRotation = [];
 var fishBodyPosition = [];
 var topFinPosition = [];
@@ -532,10 +532,10 @@ function render(timestamp) {
                         drawSphere();
                     }
                         gPush(); // // pupil
-                            gTranslate(0, 0, 0.8);
+                            gTranslate(pupilPosition[0], pupilPosition[1], pupilPosition[2]);
                             {
                                 setColor(colorBlack);
-                                gScale(0.5, 0.5, 0.5);
+                                gScale(pupilScale[0], pupilScale[1], pupilScale[2]);
                                 drawSphere();
                             }
                         gPop(); // end // pupil
@@ -544,17 +544,17 @@ function render(timestamp) {
 
                 gPush(); // right eye
 
-                    gTranslate(-0.3, 0.3, 0);
+                    gTranslate(rightEyePosition[0], rightEyePosition[1], rightEyePosition[2]); // origin
                     {
                         setColor(colorWhite);
-                        gScale(0.2, 0.2, 0.2);
+                        gScale(eyeScale[0], eyeScale[1], eyeScale[2]); // origin
                         drawSphere();
                     }
                     gPush(); // // pupil
-                        gTranslate(0, 0, 0.8);
+                        gTranslate(pupilPosition[0], pupilPosition[1], pupilPosition[2]);
                         {
                             setColor(colorBlack);
-                            gScale(0.5, 0.5, 0.5);
+                            gScale(pupilScale[0], pupilScale[1], pupilScale[2]);
                             drawSphere();
                         }
                     gPop(); // end // pupil
