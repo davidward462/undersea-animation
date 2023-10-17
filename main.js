@@ -55,11 +55,13 @@ var viewCount = 4;
 // Then the animation is simply evolving those DOF over time.
 
 // Object states
-
 var zeroVector = [0, 0, 0];
 var origin = zeroVector;
 var noRotation = zeroVector;
 var noScale = [1, 1, 1];
+var xAxis = [1, 0, 0];
+var yAxis = [0, 1, 0];
+var zAxis = [0, 0, 1];
 
 // Ground
 var groundPosition = [0,-5,0];
@@ -71,7 +73,7 @@ var rock1Position = [0,1.5,0];
 var rock1Rotation = [0,0,0];
 var rock1Scale = [0.5, 0.5, 0.5];
 
-var rock2Position = [1,1.3,0];
+var rock2Position = [1,1.3,0.5];
 var rock2Rotation = [0,0,0];
 var rock2Scale = [0.3, 0.3, 0.3];
 
@@ -79,16 +81,26 @@ var rock2Scale = [0.3, 0.3, 0.3];
 var fishRotation = [0, 0, 0];
 var tailRotation = [0, 0, 0];
 var fishXScale = 0.3;
-
-// Fish body
-var fishBodyPosition = [-2,0,0];
-var fishBodyRotation = [0,90,0];
-//var fishBodyScale = [fishXScale, 0.5, 2];
-
-// Fish head
 var fishHeadPosition = [0,0,-1.5];
 var fishHeadRotation = [0,0,0];
 var fishHeadScale = [fishXScale, 0.5, -1];
+var fishOrigin = [0, -3, 0];
+var fishPosition = [-3, 0.5, 0];
+var fishYScale = 0.8;
+var fishHeadScale = [fishXScale, fishYScale, 0.5];
+var fishStaticRotation = [];
+var fishBodyPosition = [0, 0, -1.25];
+var fishBodyScale = [fishXScale, fishYScale, 2];
+var finScale = [0.1, 0.1, 1];
+var topFinPosition = [0, 0.25, 1.2];
+var bottomFinPosition = [0, -0.25, 1.2];
+var topFinRotation = [];
+var bottomFinRotation = [];
+var leftEyePosition = [0.3, 0.3, 0];
+var rightEyePosition = [-0.3, 0.3, 0];
+var eyeScale = [0.2, 0.2, 0.2];
+var pupilPosition = [0, 0, 0.8];
+var pupilScale = [0.5, 0.5, 0.5];
 
 // Diver
 var diverPosition = [0, 0, 0];
@@ -134,36 +146,15 @@ var seaweedOffset = 0.6;
 var seaweedPosition = [1,2,0];
 var seaweedRotation = [0,0,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
-
 var seaweedSegmentCount = 10;
+var seaweedPositionSet = [[-2, 0.7, 1], [0, 0, 0], [0, 0, 0]];
 
-var fishOrigin = [0, -3, 0];
-var fishPosition = [-3, 0, 0];
-var fishHeadScale = [fishXScale, 0.5, 0.5];
-var leftEyePosition = [0.3, 0.3, 0];
-var rightEyePosition = [-0.3, 0.3, 0];
-var eyeScale = [0.2, 0.2, 0.2];
-var pupilPosition = [0, 0, 0.8];
-var pupilScale = [0.5, 0.5, 0.5];
-var fishStaticRotation = [];
-var fishBodyPosition = [0, 0, -1.25];
-var fishBodyScale = [fishXScale, 0.5, 2];
-var topFinPosition = [0, 0.25, 1.2];
-var bottomFinPosition = [0, -0.25, 1.2];
-var topFinRotation = [];
-var bottomFinRotation = [];
-var finScale = [0.1, 0.1, 1];
 var diverStaticRotation = [];
-var diverPosition = [-2, 2, -1];
+var diverPosition = [-2.5, 3.5, -1];
 var upperLegStaticRotation = [];
 var lowerLegStaticRotation = [];
 var footPosition = [-0.1, -1, 0.5];
 var footScale = [1.2, 0.3, 1.7];
-var seaweedPositionSet = [[-2, 0.7, 0], [0, 0, 0], [0, 0, 0]];
-
-var xAxis = [1, 0, 0];
-var yAxis = [0, 1, 0];
-var zAxis = [0, 0, 1];
 
  
 // colors
@@ -370,17 +361,6 @@ function createRock(translate, scale, color) {
     }
     gPop();
 }
-
-// structure
-//  push()                  1st
-//      createShape()
-//      push()              2nd 
-//          createShape()
-//          push()          3d
-//              createShape()
-//          pop()
-//      pop()
-//  pop()
 
 function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, init)
 {
