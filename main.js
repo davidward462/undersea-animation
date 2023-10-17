@@ -126,7 +126,8 @@ var footScale = [1.2, 0.3, 1.7];
 
 // seaweed
 var seaweedSize = 0.15;
-var seaweedRotation = [0,0,0]; 
+var seaweedRotation = [0,0,0];
+var seaweedOffset = [0, 0.6, 0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 var seaweedSegmentCount = 10;
 var seaweedPositionSet = [[-2, 0.7, 1], [0, 0, 0], [0, 0, 0]];
@@ -336,7 +337,7 @@ function createRock(translate, scale, color) {
     gPop();
 }
 
-function createSeaweedStrand(ts, count, position, rotate, scale, offset, color)
+function createSeaweedStrand(ts, count, position, rotate, scale, color)
 {
     // base case
     if(count == 0)
@@ -361,7 +362,7 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color)
         gPop();
 
         // do recursion
-        createSeaweedStrand(ts, count-1, position, rotate, scale, offset, color);
+        createSeaweedStrand(ts, count-1, position, rotate, scale, color);
     gPop();
 }
 
@@ -442,7 +443,7 @@ function render(timestamp) {
             // seaweed
             gPush();
                 gTranslate(seaweedPositionSet[0][0], seaweedPositionSet[0][1], seaweedPositionSet[0][2]);
-                createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed); 
+                createSeaweedStrand(timestamp, seaweedSegmentCount, seaweedOffset, seaweedRotation, seaweedScale, colorSeaweed); 
             gPop(); // end seaweed
 
             if(decor)
@@ -453,7 +454,7 @@ function render(timestamp) {
                     // seaweed
                     gPush();
                         gTranslate(seaweedPositionSet[1][0], seaweedPositionSet[1][1], seaweedPositionSet[1][2]);
-                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed); 
+                        createSeaweedStrand(timestamp, seaweedSegmentCount, seaweedOffset, seaweedRotation, seaweedScale, colorSeaweed); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
@@ -464,7 +465,7 @@ function render(timestamp) {
                     // seaweed
                     gPush();
                         gTranslate(seaweedPositionSet[2][0], seaweedPositionSet[2][1], seaweedPositionSet[2][2]);
-                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed); 
+                        createSeaweedStrand(timestamp, seaweedSegmentCount, seaweedOffset, seaweedRotation, seaweedScale, colorSeaweed); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
