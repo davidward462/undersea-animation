@@ -43,7 +43,7 @@ var TIME = 0.0; // Realtime
 var dt = 0.0
 var prevTime = 0.0;
 var resetTimerFlag = true;
-var animFlag = false;
+var animFlag = true;
 var controller;
 
 // toggle view angle with button
@@ -82,11 +82,11 @@ var rock2Scale = [rock2ScaleValue, rock2ScaleValue, rock2ScaleValue];
 var fishRotation = [0, 0, 0];
 var tailRotation = [0, 0, 0];
 var fishXScale = 0.3;
+var fishYScale = 0.8;
 var fishHeadPosition = [0,0,-1.5];
 var fishHeadScale = [fishXScale, 0.5, -1];
 var fishOrigin = [0, -3, 0];
 var fishPosition = [-3, 0.5, 0];
-var fishYScale = 0.8;
 var fishHeadScale = [fishXScale, fishYScale, 0.5];
 var fishBodyPosition = [0, 0, -1.25];
 var fishBodyScale = [fishXScale, fishYScale, 2];
