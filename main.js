@@ -79,50 +79,55 @@ var rock2Rotation = [0,0,0];
 var rock2Scale = [rock2ScaleValue, rock2ScaleValue, rock2ScaleValue];
 
 // Fish
-var fishRotation = [0, 0, 0];
-var tailRotation = [0, 0, 0];
-var fishXScale = 0.3;
-var fishYScale = 0.8;
-var fishHeadPosition = [0,0,-1.5];
-var fishHeadScale = [fishXScale, 0.5, -1];
 var fishOrigin = [0, -3, 0];
 var fishPosition = [-3, 0.5, 0];
-var fishHeadScale = [fishXScale, fishYScale, 0.5];
 var fishBodyPosition = [0, 0, -1.25];
 var fishBodyScale = [fishXScale, fishYScale, 2];
+var fishRotation = [0, 0, 0];
+var fishXScale = 0.3;
+var fishYScale = 0.8;
+
+// Fish head
+var fishHeadPosition = [0,0,-1.5];
+var fishHeadScale = [fishXScale, 0.5, -1];
+var fishHeadScale = [fishXScale, fishYScale, 0.5];
+
+// Fish tail
+var tailRotation = [0, 0, 0];
 var finScale = [0.1, 0.1, 1];
 var topFinPosition = [0, 0.25, 1.2];
 var bottomFinPosition = [0, -0.25, 1.2];
+
+// Fish eyes
 var leftEyePosition = [0.3, 0.3, 0];
 var rightEyePosition = [-0.3, 0.3, 0];
 var eyeScale = [0.2, 0.2, 0.2];
 var pupilPosition = [0, 0, 0.8];
 var pupilScale = [0.5, 0.5, 0.5];
 
-// Diver
+// Diver and diver body
+var diverPosition = [-2.5, 3.5, -1];
 var diverDrift = [0, 0, 0];
 var diverZScale = 0.2
 var diverBodyPosition = [0,-1.4,0];
 var diverBodyScale = [0.6,1,0.4];
+
+// Diver head
 var diverHeadScaleValue = 0.4
 var diverHeadScale = [diverHeadScaleValue, diverHeadScaleValue, diverHeadScaleValue];
+
+// Diver legs
 var diverLegScale = [0.2, 0.5, diverZScale];
-var diverLegYPos = -2;
-var diverLeftLegPosition = [-0.4,diverLegYPos,0];
+var diverLeftLegPosition = [-0.4, -1, 0];
 var diverLeftLegRotation = [0,0,20];
-var diverLeftLegScale = diverLegScale;
-var diverRightLegPosition = [0.4,diverLegYPos,0];
+var diverRightLegPosition = [0.8, 0, 0];
 var diverRightLegRotation = [0,0,0];
-var diverRightLegScale = diverLegScale;
-var diverShinScale = [1, 1, 1];
-var diverShinYPos = -3;
-var diverLeftShinPosition = [0,diverShinYPos,0];
+
+// Diver shins
 var diverLeftShinRotation = [0,0,0];
-var diverLeftShinScale = diverShinScale;
-var diverRightShinPosition = [0,diverShinYPos,0];
 var diverRightShinRotation = [0,0,0];
-var diverRightShinScale = diverShinScale;
-var diverPosition = [-2.5, 3.5, -1];
+
+// Diver foot
 var footPosition = [-0.1, -1, 0.5];
 var footScale = [1.2, 0.3, 1.7];
 
@@ -340,7 +345,7 @@ function createRock(translate, scale, color) {
     gPop();
 }
 
-function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, init)
+function createSeaweedStrand(ts, count, position, rotate, scale, offset, color)
 {
     // base case
     if(count == 0)
@@ -364,10 +369,8 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, 
         }
         gPop();
 
-        init = false;
-
         // do recursion
-        createSeaweedStrand(ts, count-1, position, rotate, scale, offset, color, init);
+        createSeaweedStrand(ts, count-1, position, rotate, scale, offset, color);
     gPop();
 }
 
@@ -448,7 +451,7 @@ function render(timestamp) {
             // seaweed
             gPush();
                 gTranslate(seaweedPositionSet[0][0], seaweedPositionSet[0][1], seaweedPositionSet[0][2]);
-                createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
+                createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed); 
             gPop(); // end seaweed
 
             if(decor)
@@ -459,7 +462,7 @@ function render(timestamp) {
                     // seaweed
                     gPush();
                         gTranslate(seaweedPositionSet[1][0], seaweedPositionSet[1][1], seaweedPositionSet[1][2]);
-                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
+                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
@@ -470,7 +473,7 @@ function render(timestamp) {
                     // seaweed
                     gPush();
                         gTranslate(seaweedPositionSet[2][0], seaweedPositionSet[2][1], seaweedPositionSet[2][2]);
-                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
+                        createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed); 
                     gPop(); // end seaweed
 
                 gPop(); // end rock
@@ -585,7 +588,7 @@ function render(timestamp) {
                 gPop(); // end body scale
                 
                 // translate to where center of leg is at rotation point
-                gTranslate(-0.4, -1, 0);
+                gTranslate(diverLeftLegPosition[0], diverLeftLegPosition[1], diverLeftLegPosition[2]);
 
                 gPush(); // left leg
                                       
@@ -630,7 +633,7 @@ function render(timestamp) {
 
 
                 // move over to where right leg will be
-                gTranslate(0.8, 0, 0);
+                gTranslate(diverRightLegPosition[0], diverRightLegPosition[1], diverRightLegPosition[2]);
                 gPush(); // right leg
                                       
                     // rotate
