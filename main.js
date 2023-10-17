@@ -337,6 +337,8 @@ function createRock(translate, scale, color) {
     gPop();
 }
 
+// Draw seaweed strand
+// ts: timestamp passed to function
 function createSeaweedStrand(ts, count, position, rotate, scale, color)
 {
     // base case
@@ -348,11 +350,12 @@ function createSeaweedStrand(ts, count, position, rotate, scale, color)
     gTranslate(position[0], position[1], position[2]);
     gPush();
     
+        // oscillate seaweed like wave
         let phase = count*100;
         rotate[2] = 5*Math.cos( radians(ts) /30.0 + phase );
         gRotate(rotate[2], 0, 0, 1);
 
-        // body
+        // draw
         gPush();
         {
             setColor(color);
@@ -366,6 +369,7 @@ function createSeaweedStrand(ts, count, position, rotate, scale, color)
     gPop();
 }
 
+// Apply translate, rotate, scale, and color to draw a shape.
 function staticDraw(shape, translate, rotate, rotateAxis, scale, color)
 {
         gTranslate(translate[0], translate[1], translate[2]);
@@ -373,6 +377,8 @@ function staticDraw(shape, translate, rotate, rotateAxis, scale, color)
         {
             setColor(color);
             gScale(scale[0], scale[1], scale[2]);
+
+            // Determine shape
             if(shape=="cone")
             {
                 drawCone();
@@ -381,7 +387,7 @@ function staticDraw(shape, translate, rotate, rotateAxis, scale, color)
             {
                 drawSphere();
             }
-            else
+            else // base case
             {
                 drawCube();
             }
