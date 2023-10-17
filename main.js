@@ -79,62 +79,53 @@ var rock2Rotation = [0,0,0];
 var rock2Scale = [rock2ScaleValue, rock2ScaleValue, rock2ScaleValue];
 
 // Fish
+var fishRotation = [0, 0, 0];
+var tailRotation = [0, 0, 0];
+var fishXScale = 0.3;
+var fishYScale = 0.8;
 var fishOrigin = [0, -3, 0];
 var fishPosition = [-3, 0.5, 0];
 var fishBodyPosition = [0, 0, -1.25];
 var fishBodyScale = [fishXScale, fishYScale, 2];
-var fishRotation = [0, 0, 0];
-var fishXScale = 0.3;
-var fishYScale = 0.8;
 
-// Fish head
 var fishHeadPosition = [0,0,-1.5];
 var fishHeadScale = [fishXScale, 0.5, -1];
 var fishHeadScale = [fishXScale, fishYScale, 0.5];
 
-// Fish tail
-var tailRotation = [0, 0, 0];
 var finScale = [0.1, 0.1, 1];
 var topFinPosition = [0, 0.25, 1.2];
 var bottomFinPosition = [0, -0.25, 1.2];
 
-// Fish eyes
 var leftEyePosition = [0.3, 0.3, 0];
 var rightEyePosition = [-0.3, 0.3, 0];
 var eyeScale = [0.2, 0.2, 0.2];
 var pupilPosition = [0, 0, 0.8];
 var pupilScale = [0.5, 0.5, 0.5];
 
-// Diver and diver body
+// Diver
 var diverPosition = [-2.5, 3.5, -1];
 var diverDrift = [0, 0, 0];
 var diverZScale = 0.2
 var diverBodyPosition = [0,-1.4,0];
 var diverBodyScale = [0.6,1,0.4];
 
-// Diver head
 var diverHeadScaleValue = 0.4
 var diverHeadScale = [diverHeadScaleValue, diverHeadScaleValue, diverHeadScaleValue];
 
-// Diver legs
 var diverLegScale = [0.2, 0.5, diverZScale];
 var diverLeftLegPosition = [-0.4, -1, 0];
 var diverLeftLegRotation = [0,0,20];
 var diverRightLegPosition = [0.8, 0, 0];
 var diverRightLegRotation = [0,0,0];
 
-// Diver shins
 var diverLeftShinRotation = [0,0,0];
 var diverRightShinRotation = [0,0,0];
 
-// Diver foot
 var footPosition = [-0.1, -1, 0.5];
 var footScale = [1.2, 0.3, 1.7];
 
 // seaweed
 var seaweedSize = 0.15;
-var seaweedOffset = 0.6;
-var seaweedPosition = [1,2,0];
 var seaweedRotation = [0,0,0]; 
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 var seaweedSegmentCount = 10;
