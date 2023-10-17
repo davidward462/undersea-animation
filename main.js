@@ -71,31 +71,28 @@ var groundScale = [6,1,6];
 // rocks
 var rock1Position = [0,1.5,0];
 var rock1Rotation = [0,0,0];
-var rock1Scale = [0.5, 0.5, 0.5];
-
+var rock1ScaleValue = 0.5
+var rock1Scale = [rock1ScaleValue, rock1ScaleValue, rock1ScaleValue];
+var rock2ScaleValue = 0.3;
 var rock2Position = [1,1.3,0.5];
 var rock2Rotation = [0,0,0];
-var rock2Scale = [0.3, 0.3, 0.3];
+var rock2Scale = [rock2ScaleValue, rock2ScaleValue, rock2ScaleValue];
 
 // Fish
 var fishRotation = [0, 0, 0];
 var tailRotation = [0, 0, 0];
 var fishXScale = 0.3;
 var fishHeadPosition = [0,0,-1.5];
-var fishHeadRotation = [0,0,0];
 var fishHeadScale = [fishXScale, 0.5, -1];
 var fishOrigin = [0, -3, 0];
 var fishPosition = [-3, 0.5, 0];
 var fishYScale = 0.8;
 var fishHeadScale = [fishXScale, fishYScale, 0.5];
-var fishStaticRotation = [];
 var fishBodyPosition = [0, 0, -1.25];
 var fishBodyScale = [fishXScale, fishYScale, 2];
 var finScale = [0.1, 0.1, 1];
 var topFinPosition = [0, 0.25, 1.2];
 var bottomFinPosition = [0, -0.25, 1.2];
-var topFinRotation = [];
-var bottomFinRotation = [];
 var leftEyePosition = [0.3, 0.3, 0];
 var rightEyePosition = [-0.3, 0.3, 0];
 var eyeScale = [0.2, 0.2, 0.2];
@@ -103,42 +100,31 @@ var pupilPosition = [0, 0, 0.8];
 var pupilScale = [0.5, 0.5, 0.5];
 
 // Diver
-var diverPosition = [0, 0, 0];
 var diverDrift = [0, 0, 0];
 var diverZScale = 0.2
 var diverBodyPosition = [0,-1.4,0];
-var diverBodyRotation = [0,35,0];
 var diverBodyScale = [0.6,1,0.4];
-
-// Head
-var diverHeadPosition = [0,0,0];
-var diverHeadRotation = [0,0,0];
 var diverHeadScaleValue = 0.4
 var diverHeadScale = [diverHeadScaleValue, diverHeadScaleValue, diverHeadScaleValue];
-
-// Legs
 var diverLegScale = [0.2, 0.5, diverZScale];
 var diverLegYPos = -2;
-
 var diverLeftLegPosition = [-0.4,diverLegYPos,0];
 var diverLeftLegRotation = [0,0,20];
 var diverLeftLegScale = diverLegScale;
-
 var diverRightLegPosition = [0.4,diverLegYPos,0];
 var diverRightLegRotation = [0,0,0];
 var diverRightLegScale = diverLegScale;
-
-// Shin
 var diverShinScale = [1, 1, 1];
 var diverShinYPos = -3;
-
 var diverLeftShinPosition = [0,diverShinYPos,0];
 var diverLeftShinRotation = [0,0,0];
 var diverLeftShinScale = diverShinScale;
-
 var diverRightShinPosition = [0,diverShinYPos,0];
 var diverRightShinRotation = [0,0,0];
 var diverRightShinScale = diverShinScale;
+var diverPosition = [-2.5, 3.5, -1];
+var footPosition = [-0.1, -1, 0.5];
+var footScale = [1.2, 0.3, 1.7];
 
 // seaweed
 var seaweedSize = 0.15;
@@ -148,14 +134,6 @@ var seaweedRotation = [0,0,0];
 var seaweedScale = [1*seaweedSize, 2*seaweedSize, 1*seaweedSize];
 var seaweedSegmentCount = 10;
 var seaweedPositionSet = [[-2, 0.7, 1], [0, 0, 0], [0, 0, 0]];
-
-var diverStaticRotation = [];
-var diverPosition = [-2.5, 3.5, -1];
-var upperLegStaticRotation = [];
-var lowerLegStaticRotation = [];
-var footPosition = [-0.1, -1, 0.5];
-var footScale = [1.2, 0.3, 1.7];
-
  
 // colors
 var colorWhite = vec4(1.0, 1.0, 1.0, 1.0);
