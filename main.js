@@ -159,6 +159,7 @@ var upperLegStaticRotation = [];
 var lowerLegStaticRotation = [];
 var footPosition = [-0.1, -1, 0.5];
 var footScale = [1.2, 0.3, 1.7];
+var seaweedPositionSet = [[-2, 0.7, 0], [0, 0, 0], [0, 0, 0]];
 
 var xAxis = [1, 0, 0];
 var yAxis = [0, 1, 0];
@@ -396,9 +397,6 @@ function createSeaweedStrand(ts, count, position, rotate, scale, offset, color, 
         rotate[2] = 5*Math.cos( radians(ts) /30.0 + phase );
         gRotate(rotate[2], 0, 0, 1);
 
-        // translate so joint was where center had been rotating
-        //gTranslate(0, offset, 0);
-
         // body
         gPush();
         {
@@ -491,7 +489,7 @@ function render(timestamp) {
 
             // seaweed
             gPush();
-                gTranslate(-2, 1, 0);
+                gTranslate(seaweedPositionSet[0][0], seaweedPositionSet[0][1], seaweedPositionSet[0][2]);
                 createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
             gPop(); // end seaweed
 
@@ -502,6 +500,7 @@ function render(timestamp) {
 
                     // seaweed
                     gPush();
+                        gTranslate(seaweedPositionSet[1][0], seaweedPositionSet[1][1], seaweedPositionSet[1][2]);
                         createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
                     gPop(); // end seaweed
 
@@ -512,6 +511,7 @@ function render(timestamp) {
 
                     // seaweed
                     gPush();
+                        gTranslate(seaweedPositionSet[2][0], seaweedPositionSet[2][1], seaweedPositionSet[2][2]);
                         createSeaweedStrand(timestamp, seaweedSegmentCount, [0, 0.6, 0], seaweedRotation, seaweedScale, 0.6, colorSeaweed, true); 
                     gPop(); // end seaweed
 
